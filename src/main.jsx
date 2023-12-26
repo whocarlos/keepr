@@ -14,6 +14,7 @@ import Signup, {signUpAction} from './pages/Signup.jsx'
 
 import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
+import { CheckSession } from './components/CheckSession.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,12 +23,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <CheckSession> <Login /> </CheckSession>,
     action: loginAction
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: <CheckSession>  <Signup /> </CheckSession>,
     action: signUpAction
   }
 ])
