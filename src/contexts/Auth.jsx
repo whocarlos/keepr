@@ -5,6 +5,7 @@ const AuthContext = React.createContext();
 
 export function AuthProvider({children}){
     const [session, setSession] = useState(null);   
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const subscription = supabase.auth.onAuthStateChange((event, session) => {
@@ -14,7 +15,7 @@ export function AuthProvider({children}){
             } else if(session){
                 setSession(session);
             }
-            
+            setLoading(false);
         });
 
         return () => {
@@ -24,7 +25,7 @@ export function AuthProvider({children}){
     
     return (
         <AuthContext.Provider value={session}>
-            {children}
+            {!loading && children}
         </AuthContext.Provider>
     );
 }

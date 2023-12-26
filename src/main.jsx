@@ -13,11 +13,12 @@ import Login, {loginAction} from './pages/Login.jsx'
 import Signup, {signUpAction} from './pages/Signup.jsx'
 
 import { AuthProvider } from './contexts/Auth.jsx'
+import { Protected } from './components/Protected.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element:<Protected> <Home /> </Protected>
   },
   {
     path: "/login",
