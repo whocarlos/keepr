@@ -1,15 +1,13 @@
 import { useAuth } from "../contexts/Auth";
+import './Home.css'
 
 function Home(){
     const session = useAuth();
     console.log(session.user)
     return (
-        <>
-        <h1>Sup</h1>
-        <p>
-            {JSON.stringify(session.user)};
-        </p>
-        </>
+        <div>
+            <h1>Home page</h1>
+        </div>
     )
 }
 
