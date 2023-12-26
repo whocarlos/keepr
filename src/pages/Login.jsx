@@ -1,6 +1,28 @@
+import { Form, redirect } from "react-router-dom";
+import supabase from "../supabase";
+
+export async function loginAction({request}){
+    let formData = await request.formData();
+    let email = formData.get("email");
+    let password = formData.get("password");
+
+    const {data, error} = await supabase.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if(error){
+        console.log('error login in ', error );
+    }else{
+        console.log(data);
+    }
+
+    return redirect('/');
+}
+
 function Login(){
 
-    
+
     return (
         <>
         <h1>Login</h1>

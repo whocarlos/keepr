@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 
 import Home from "./pages/Home.jsx"
-import Login from './pages/Login.jsx'
+import Login, {loginAction} from './pages/Login.jsx'
 import Signup, {signUpAction} from './pages/Signup.jsx'
 
 import { AuthProvider } from './contexts/Auth.jsx'
@@ -21,7 +21,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
+    action: loginAction
   },
   {
     path: "/signup",

@@ -8,6 +8,7 @@ export function AuthProvider({children}){
 
     useEffect(() => {
         const subscription = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('an auth event occured', event);
             if(event === 'SIGNED_OUT'){
                 setSession(null);
             } else if(session){
@@ -20,10 +21,15 @@ export function AuthProvider({children}){
             subscription.data.subscription.unsubscribe()
         }
     }, []);
-
+    
     return (
         <AuthContext.Provider value={session}>
             {children}
         </AuthContext.Provider>
     );
+}
+
+
+export function useAuth(){
+    return useContext(AuthContext);
 }
