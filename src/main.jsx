@@ -10,7 +10,7 @@ import {
 
 import Home from "./pages/Home.jsx"
 import Login from './pages/Login.jsx'
-import Signup from './pages/Signup.jsx'
+import Signup, {signUpAction} from './pages/Signup.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <Signup />
+    element: <Signup />,
+    action: signUpAction
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
