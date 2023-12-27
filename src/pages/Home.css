@@ -59,6 +59,7 @@
 
 .note-settings-icons-container{
     display: flex;
+    justify-content: space-around;
 }
 
 .create-container{
@@ -70,4 +71,29 @@
 
 .form-container{
     background-color: blanchedalmond;
+}
+
+#bookmark{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+
+    /*Avoid accidentally clicking the real checkbox, hope this doesn't backfire*/
+    margin-left: 100px;
+}
+
+.bookmark-icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.title-container{
+    display: flex;
+}
+
+#title-input{
+    width: 85%;
+    margin-right: 10px;
 }
