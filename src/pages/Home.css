@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
 
-    margin: 10px
+    margin: 10px 0;
 
 
 }
@@ -47,6 +47,27 @@
     height: 30px;
 }
 
+
 .main{
     background-color: chocolate;
+}
+
+.note-settings-icon{
+    height: 20px;
+    width: 20px;
+}
+
+.note-settings-icons-container{
+    display: flex;
+}
+
+.create-container{
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    background-color: blanchedalmond;
 }
