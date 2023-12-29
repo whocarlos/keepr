@@ -59,7 +59,7 @@
 
 .note-settings-icons-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .create-container{
@@ -71,6 +71,8 @@
 
 .form-container{
     background-color: blanchedalmond;
+    width: 25em;
+    max-width: 25em;
 }
 
 #bookmark{
@@ -91,9 +93,19 @@
 
 .title-container{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #title-input{
-    width: 85%;
-    margin-right: 10px;
+    width: 90%;
+    max-width: 90%;
+    background: transparent;
+    margin: 0.5em 0;
+}
+
+
+.text-content{
+    background-color:aqua;
+    text-align: left;
 }
