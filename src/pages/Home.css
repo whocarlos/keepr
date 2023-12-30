@@ -73,6 +73,7 @@
     background-color: blanchedalmond;
     width: 25em;
     max-width: 25em;
+    padding: 0.5em;
 }
 
 #bookmark{
@@ -101,11 +102,15 @@
     width: 90%;
     max-width: 90%;
     background: transparent;
-    margin: 0.5em 0;
 }
 
 
-.text-content{
-    background-color:aqua;
-    text-align: left;
+.textarea-input{
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+}
+
+.note-content-input{
+    margin: 0.8em 0;
 }

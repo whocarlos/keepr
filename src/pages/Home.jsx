@@ -5,7 +5,7 @@ import { Form } from "react-router-dom";
 import './Home.css'
 import { useState, useRef } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
-import { NoteTextInput } from "../components/NoteTextInput";
+import { NoteContentInput } from "../components/NoteContentInput";
 
 
 function Home() {
@@ -41,7 +41,7 @@ function Home() {
           <div className='form-container'>
             <Form>
               <NoteTitleInput />
-              <NoteTextInput />
+              <NoteContentInput />
               <NoteSettings />
 
             </Form>
