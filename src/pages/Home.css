@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+#middle-setting-icon{
+    margin: 0 2em;
+}
+
 .ham-container{
     width: 20px;
     height: 20px;
