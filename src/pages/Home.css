@@ -3,9 +3,8 @@
     display: flex;
     justify-content: space-between;
 
-    margin: 10px 0;
-
-
+    height: 5em;
+    padding: 0 1em;
 }
 
 .ham-logo{
@@ -34,12 +33,40 @@
 }
 
 .search-logo{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 .search-container{
     display: flex;
     align-items: center;
+
+    background-color: #525356;
+    border-radius: 8px;
+    margin: 0.5em 0;
+    padding: 0 0.5em;
+}
+
+#search-input{
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 20em;
+    margin-left: 1em;
+}
+
+#search-input::placeholder{
+    color: white;
+}
+
+.search-logo{
+    color: white;
+}
+
+.search-logo:hover{
+    box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.1);
+    cursor: pointer;
 }
 
 .setting-icon{
@@ -147,5 +174,11 @@
 .note-settings-icon:hover{
     box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+
+
+.navbar-separation{
+    color: blue;
+    margin: 1em 0;
 }
 

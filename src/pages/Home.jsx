@@ -35,7 +35,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-
+      <hr className="navbar-separation" />
       <div className="main">
         <div className="create-container">
           <div className='form-container'>
