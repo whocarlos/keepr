@@ -24,7 +24,8 @@
 
 .keepr{
     color: white;
-    font-size: 24px
+    font-size: 24px;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 .ham-container:hover{
