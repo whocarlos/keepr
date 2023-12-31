@@ -17,13 +17,14 @@
 }
 
 .ham-container{
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     color: white;
 }
 
 .keepr{
     color: white;
+    font-size: 24px
 }
 
 .ham-container:hover{
