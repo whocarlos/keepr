@@ -70,7 +70,7 @@
 }
 
 .form-container{
-    background-color: blanchedalmond;
+    background-color: #202124;
     width: 25em;
     max-width: 25em;
     padding: 0.5em;
@@ -114,3 +114,25 @@
 .note-content-input{
     margin: 0.8em 0;
 }
+
+.button-close{
+    border: none;
+    background: none;
+    padding: 0.3em 0.5em;
+    color: white;
+}
+
+.button-close:hover{
+    box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.note-settings-icon{
+    color: white;
+}
+
+.note-settings-icon:hover{
+    box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+

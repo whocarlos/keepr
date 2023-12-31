@@ -45,7 +45,7 @@ export function NoteSettings(){
 </svg>
 
         </div>
-        <button>Close</button>
+        <button className="button-close">Close</button>
     </div>
     )
 }
