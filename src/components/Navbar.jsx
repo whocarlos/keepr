@@ -17,7 +17,7 @@ export function Navbar() {
 
                     </div>
                     <div>
-                        <p>Keepr</p>
+                        <p className="keepr">Keepr</p>
 
                     </div>
                 </div>
