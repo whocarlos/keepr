@@ -25,7 +25,7 @@
 .keepr{
     color: white;
     font-size: 24px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial, Helvetica, sans-serif
 }
 
 .ham-container:hover{
@@ -111,10 +111,11 @@
 }
 
 .create-container{
-    background-color: coral;
+    background-color: #202124;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.5em 0;
 }
 
 .form-container{
@@ -122,6 +123,8 @@
     width: 25em;
     max-width: 25em;
     padding: 0.5em;
+    border-radius: 8px;
+    border: 1px solid white;
 }
 
 #bookmark{
@@ -199,7 +202,6 @@
 
 
 .navbar-separation{
-    color: blue;
-    margin: 1em 0;
+    color: white;
 }
 
