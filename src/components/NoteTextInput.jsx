@@ -57,7 +57,7 @@ export function NoteTextInput() {
 
         console.log('n of white spaces: ', numOfWSpaces);
         let wSpaces = '';
-        if (wSpaces > 0) {
+        if (numOfWSpaces > 0) {
             for (let i = 0; i < numOfWSpaces; i++) {
                 wSpaces += ' ';
             }
