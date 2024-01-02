@@ -12,7 +12,7 @@ export function NoteTextInput() {
         // Check for list that starts with -
         if (lastLine[0] === '-') {
             if (lastLine[1] === ' ' && lastLine[2] !== undefined) {
-            //console.log('you have an unordered list - ');
+                //console.log('you have an unordered list - ');
                 return {
                     isList: true,
                     listType: 'UNORDERED',
@@ -49,20 +49,60 @@ export function NoteTextInput() {
 
     }
 
+    function insertNewLine(listType, lastNum) {
+        let lastLine = noteContent.split('\n').slice(-1)[0];
+        let lastLineTrimmedLeft = lastLine.trimStart();
+        let numOfWSpaces = lastLine.length - lastLineTrimmedLeft.length;
+        //console.log(lastLine, 'last one from insert');
+
+        console.log('n of white spaces: ', numOfWSpaces);
+        let wSpaces = '';
+        if (wSpaces > 0) {
+            for (let i = 0; i < numOfWSpaces; i++) {
+                wSpaces += ' ';
+            }
+        }
+
+
+
+
+        let newLine;
+
+        if (listType === 'ORDERED') {
+            newLine = `${wSpaces}${lastNum + 1}. `;
+        } else {
+            newLine = `${wSpaces}- `;
+        }
+
+        let valueArr = noteContent.split('\n');
+        valueArr.push(newLine);
+        let newValue = valueArr.join('\n');
+        setNoteContent(newValue);
+
+    }
     function handleChange(e) {
         let inputType = e.nativeEvent.inputType;
 
         if (inputType === 'insertLineBreak') {
-            let {isList, 
-                listType, 
+            let { isList,
+                listType,
                 lastNum
             } = checkForList(noteContent);
 
-            console.log('list info, ' , isList, listType, lastNum);
+            console.log('list info, ', isList, listType, lastNum);
 
+            if (isList === true) {
+                insertNewLine(listType, lastNum);
+            } else {
+                setNoteContent(e.target.value);
+
+            }
+
+        } else {
+            console.log(inputType);
+            setNoteContent(e.target.value);
         }
-        console.log(inputType);
-        setNoteContent(e.target.value);
+
     }
 
     return (
