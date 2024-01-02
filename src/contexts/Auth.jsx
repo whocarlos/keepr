@@ -9,7 +9,7 @@ export function AuthProvider({children}){
 
     useEffect(() => {
         const subscription = supabase.auth.onAuthStateChange((event, session) => {
-            console.log('an auth event occured', event);
+            //console.log('an auth event occured', event);
             if(event === 'SIGNED_OUT'){
                 setSession(null);
             } else if(session){

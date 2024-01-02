@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/Auth";
 
 export function Protected({children}){
     const session = useAuth();
-    console.log('hello from protected', session)
+    //console.log('hello from protected', session)
 
     if(session === null){
         return <Navigate to='/login' />

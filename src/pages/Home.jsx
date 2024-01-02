@@ -10,7 +10,7 @@ import { NoteContentInput } from "../components/NoteContentInput";
 
 function Home() {
   const session = useAuth();
-  console.log(session.user)
+  //console.log(session.user)
 
   // const[isCheck, setIscheck] = useState(false);
 
