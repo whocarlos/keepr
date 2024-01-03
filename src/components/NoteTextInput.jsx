@@ -3,12 +3,12 @@ import { useState } from 'react';
 export function NoteTextInput() {
     const [noteContent, setNoteContent] = useState('');
 
-    function checkForList(textAreaValue) {
-        let valueArr = textAreaValue.split('\n');
-        console.log('value on line break: ', valueArr);
+    function checkForList(noteContent, currDOMValue) {
+        let noteContentArr = noteContent.split('\n');
+        console.log('value on line break: ', noteContentArr);
 
 
-        let lastLine = valueArr[valueArr.length - 1].trim();
+        let lastLine = noteContentArr[noteContentArr.length - 1].trim();
 
         // Check for list that starts with -
         if (lastLine[0] === '-') {
@@ -80,14 +80,17 @@ export function NoteTextInput() {
 
     }
     function handleChange(e) {
-        //console.log('input mfer ', e);
+        //console.log(noteContent, 'this is noteContent');
+        //console.log(e.target.value, 'this is the DOM value');
+
+        let currDOMValue = e.target.value;
         let inputType = e.nativeEvent.inputType;
 
         if (inputType === 'insertLineBreak') {
             let { isList,
                 listType,
                 lastNum
-            } = checkForList(noteContent);
+            } = checkForList(noteContent, currDOMValue);
 
             console.log('list info, ', isList, listType, lastNum);
 
@@ -95,17 +98,20 @@ export function NoteTextInput() {
 
             if (isList === true) {
                 newLine = getNewListLine(listType, lastNum);
+                let valueArr = noteContent.split('\n');
+                valueArr.push(newLine);
+                let newValue = valueArr.join('\n');
+                setNoteContent(newValue)
+            }else{
+                setNoteContent(e.target.value);
             }
 
-            let valueArr = noteContent.split('\n');
-            valueArr.push(newLine);
-            let newValue = valueArr.join('\n');
-            setNoteContent(newValue);
+
 
 
 
         } else {
-            console.log(inputType);
+            //console.log(e.target.value, 'dom value down here');
             setNoteContent(e.target.value);
         }
 
