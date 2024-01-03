@@ -2,11 +2,31 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from 'react';
 export function NoteTextInput() {
     const [noteContent, setNoteContent] = useState('');
-
-    function checkForList(noteContent, currDOMValue) {
+    const [prevContent, setPrevContent] = useState('');
+    function checkForList(noteContent, prevContent) {
         let noteContentArr = noteContent.split('\n');
-        console.log('value on line break: ', noteContentArr);
+        let prevContentArr = prevContent.split('\n');
+        
+        console.log('curr', noteContentArr);
+        console.log('prev', prevContentArr);
 
+        let largestLen = noteContentArr.length > prevContentArr.length 
+        ? noteContentArr.length : prevContentArr.length;
+
+
+        // Detect at wich line the edit ocurred
+        // Works for now but probably will have bugs
+        let index = -1;
+        for(let i = 0; i < largestLen; i++){
+            if(noteContentArr[i] !== prevContentArr[i]){
+                index = i;
+                break;
+            }
+        }
+
+        //console.log('last edited line? ', index);
+        
+      
 
         let lastLine = noteContentArr[noteContentArr.length - 1].trim();
 
@@ -80,17 +100,15 @@ export function NoteTextInput() {
 
     }
     function handleChange(e) {
-        //console.log(noteContent, 'this is noteContent');
-        //console.log(e.target.value, 'this is the DOM value');
 
-        let currDOMValue = e.target.value;
+
         let inputType = e.nativeEvent.inputType;
 
         if (inputType === 'insertLineBreak') {
             let { isList,
                 listType,
                 lastNum
-            } = checkForList(noteContent, currDOMValue);
+            } = checkForList(noteContent, prevContent);
 
             console.log('list info, ', isList, listType, lastNum);
 
@@ -101,8 +119,10 @@ export function NoteTextInput() {
                 let valueArr = noteContent.split('\n');
                 valueArr.push(newLine);
                 let newValue = valueArr.join('\n');
+                setPrevContent(noteContent);
                 setNoteContent(newValue)
             }else{
+                setPrevContent(noteContent);
                 setNoteContent(e.target.value);
             }
 
@@ -112,6 +132,7 @@ export function NoteTextInput() {
 
         } else {
             //console.log(e.target.value, 'dom value down here');
+            setPrevContent(noteContent);
             setNoteContent(e.target.value);
         }
 
