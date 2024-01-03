@@ -7,6 +7,7 @@ export function NoteTextInput() {
         let valueArr = textAreaValue.split('\n');
         console.log('value on line break: ', valueArr);
 
+
         let lastLine = valueArr[valueArr.length - 1].trim();
 
         // Check for list that starts with -
@@ -49,7 +50,7 @@ export function NoteTextInput() {
 
     }
 
-    function insertNewLine(listType, lastNum) {
+    function getNewListLine(listType, lastNum) {
         let lastLine = noteContent.split('\n').slice(-1)[0];
         let lastLineTrimmedLeft = lastLine.trimStart();
         let numOfWSpaces = lastLine.length - lastLineTrimmedLeft.length;
@@ -74,13 +75,12 @@ export function NoteTextInput() {
             newLine = `${wSpaces}- `;
         }
 
-        let valueArr = noteContent.split('\n');
-        valueArr.push(newLine);
-        let newValue = valueArr.join('\n');
-        setNoteContent(newValue);
+        return newLine;
+
 
     }
     function handleChange(e) {
+        //console.log('input mfer ', e);
         let inputType = e.nativeEvent.inputType;
 
         if (inputType === 'insertLineBreak') {
@@ -91,12 +91,18 @@ export function NoteTextInput() {
 
             console.log('list info, ', isList, listType, lastNum);
 
-            if (isList === true) {
-                insertNewLine(listType, lastNum);
-            } else {
-                setNoteContent(e.target.value);
+            let newLine = '';
 
+            if (isList === true) {
+                newLine = getNewListLine(listType, lastNum);
             }
+
+            let valueArr = noteContent.split('\n');
+            valueArr.push(newLine);
+            let newValue = valueArr.join('\n');
+            setNoteContent(newValue);
+
+
 
         } else {
             console.log(inputType);
@@ -109,6 +115,7 @@ export function NoteTextInput() {
         <TextareaAutosize className='textarea-input'
             value={noteContent}
             onChange={(e) => handleChange(e)}
+
         />
     )
 }
