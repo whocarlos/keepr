@@ -1,60 +1,65 @@
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from 'react';
 export function NoteTextInput() {
+
     const [noteContent, setNoteContent] = useState('');
     const [prevContent, setPrevContent] = useState('');
+
     function checkForList(noteContent, prevContent) {
         let noteContentArr = noteContent.split('\n');
         let prevContentArr = prevContent.split('\n');
-        
+
         console.log('curr', noteContentArr);
         console.log('prev', prevContentArr);
 
-        let largestLen = noteContentArr.length > prevContentArr.length 
-        ? noteContentArr.length : prevContentArr.length;
+        let largestLen = noteContentArr.length > prevContentArr.length
+            ? noteContentArr.length : prevContentArr.length;
 
 
         // Detect at wich line the edit ocurred
         // Works for now but probably will have bugs
         let index = -1;
-        for(let i = 0; i < largestLen; i++){
-            if(noteContentArr[i] !== prevContentArr[i]){
+        for (let i = 0; i < largestLen; i++) {
+            if (noteContentArr[i] !== prevContentArr[i]) {
                 index = i;
                 break;
             }
         }
 
-        //console.log('last edited line? ', index);
-        
-      
+        //console.log('last edited line? ', index +1);
 
-        let lastLine = noteContentArr[noteContentArr.length - 1].trim();
+        let lastEditedLine = noteContentArr[index].trim();
+        //console.log(lastEditedLine, 'the line you just changed');
+
+        // let lastLine = noteContentArr[noteContentArr.length - 1].trim();
 
         // Check for list that starts with -
-        if (lastLine[0] === '-') {
-            if (lastLine[1] === ' ' && lastLine[2] !== undefined) {
+        if (lastEditedLine[0] === '-') {
+            if (lastEditedLine[1] === ' ' && lastEditedLine[2] !== undefined) {
                 //console.log('you have an unordered list - ');
                 return {
                     isList: true,
                     listType: 'UNORDERED',
-                    lastNum: -1
+                    lastNum: -1,
+                    linePosition: index
                 };
             }
         }
 
         // Check for list that starts with a number
-        if (/\d/.test(lastLine[0]) === true) {
+        if (/\d/.test(lastEditedLine[0]) === true) {
             //console.log('number found: ', lastLine[0])
-            let dotIndex = lastLine.indexOf('.');
+            let dotIndex = lastEditedLine.indexOf('.');
             //console.log('num found, the do is at ', dotPosition)
 
-            if (dotIndex !== -1 && lastLine[dotIndex + 1] === ' ' && lastLine[dotIndex + 2] !== undefined) {
+            if (dotIndex !== -1 && lastEditedLine[dotIndex + 1] === ' ' && lastEditedLine[dotIndex + 2] !== undefined) {
                 console.log('I think i have a list num');
-                let num = parseInt(lastLine.substring(0, dotIndex));
+                let num = parseInt(lastEditedLine.substring(0, dotIndex));
                 return {
                     isList: true,
                     listType: 'ORDERED',
-                    lastNum: num
+                    lastNum: num,
+                    linePosition: index
                 };
             }
         }
@@ -64,7 +69,8 @@ export function NoteTextInput() {
         return {
             isList: false,
             listType: 'NO_LIST',
-            lastNum: -1
+            lastNum: -1,
+            linePosition: index
         }
 
 
@@ -107,8 +113,8 @@ export function NoteTextInput() {
         if (inputType === 'insertLineBreak') {
             let { isList,
                 listType,
-                lastNum
-            } = checkForList(noteContent, prevContent);
+                lastNum,
+                linePosition } = checkForList(noteContent, prevContent);
 
             console.log('list info, ', isList, listType, lastNum);
 
@@ -117,11 +123,11 @@ export function NoteTextInput() {
             if (isList === true) {
                 newLine = getNewListLine(listType, lastNum);
                 let valueArr = noteContent.split('\n');
-                valueArr.push(newLine);
+                valueArr[linePosition+1] = newLine;
                 let newValue = valueArr.join('\n');
                 setPrevContent(noteContent);
                 setNoteContent(newValue)
-            }else{
+            } else {
                 setPrevContent(noteContent);
                 setNoteContent(e.target.value);
             }
