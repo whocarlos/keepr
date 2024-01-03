@@ -26,8 +26,13 @@ export function NoteTextInput() {
             }
         }
 
-        //console.log('last edited line? ', index +1);
+        if(index >= noteContentArr.length){
+            index = noteContentArr.length -1;
+        }
 
+        console.log('last edited line? ', index +1);
+
+    
         let lastEditedLine = noteContentArr[index].trim();
         //console.log(lastEditedLine, 'the line you just changed');
 
