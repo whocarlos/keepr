@@ -4,43 +4,25 @@ export function NoteTextInput() {
 
     const [noteContent, setNoteContent] = useState('');
 
-    function createNewDiv(parent) {
-        const newDiv = document.createElement("div");
-        const newContent = document.createTextNode('sup line');
-        newDiv.appendChild(newContent);
-        newDiv.classList.add('newline');
-        parent.appendChild(newDiv);
+    function handleKeyDown(e){
+        if(e.key === 'Enter'){
+            const selection = window.getSelection();
+            //console.log(selection);
+            //let {anchorNode, focusNode} = selection;
+            //console.log(anchorNode.parentElement, focusNode.parentElement);
 
-    }
-
-    function handleInput(e) {
-        //console.log(e)
-        //e.preventDefault();
-        let { inputType } = e.nativeEvent;
-        console.log(inputType);
-
-        let { innerHTML } = e.target;
-        console.log(innerHTML)
-
-        let parent = e.target;
-        if (inputType === 'insertParagraph') {
-            console.log('this ran?')
-            //createNewDiv(parent);
+            const range = selection.getRangeAt(0);
+            const line = range.startContainer.parentElement;
+            console.log(line);
         }
-
-
-        setNoteContent(innerHTML);
-
-
-        //console.log('sup',noteContent);
     }
 
     return (
         <div contentEditable='true'
             suppressContentEditableWarning='true'
             className='text-input'
-            onInput={(e) => handleInput(e)}
             placeholder="Add a note..."
+            onKeyDown={(e) => handleKeyDown(e)}
         >
         </div>
     )
