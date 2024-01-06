@@ -4,6 +4,6 @@ export function NoteContentInput(){
     return (
         <div className="note-content-input">
             <NoteTextInput />
-        </div>
+        </div> 
     )
 }
