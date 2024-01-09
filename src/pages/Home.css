@@ -211,8 +211,6 @@
     outline: none;
 }
 
-[contenteditable=true]:empty:before{
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block; /* For Firefox */
-  }
+.ql-toolbar.ql-snow {
+    display: none;
+}

@@ -10,6 +10,6 @@ export function NoteTextInput() {
     }
 
     return(
-        <ReactQuill />
+        <ReactQuill  />
     );
 }
