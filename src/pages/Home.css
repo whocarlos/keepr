@@ -211,6 +211,15 @@
     outline: none;
 }
 
-.ql-toolbar.ql-snow {
+.ql-toolbar {
     display: none;
+}
+
+.ql-container {
+    border: none;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow{
+    color: white;
+    border: none;
 }
