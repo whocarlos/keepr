@@ -5,11 +5,11 @@ import 'react-quill/dist/quill.snow.css';
 export function NoteTextInput() {
 
     const [noteContent, setNoteContent] = useState('');
-    const quillModules = {
-        toolbar: false
-    }
+    
+        
+    
 
     return(
-        <ReactQuill  />
+        <ReactQuill placeholder='Add a note...'/>
     );
 }
