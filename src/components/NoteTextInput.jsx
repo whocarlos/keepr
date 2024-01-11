@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 export function NoteTextInput() {
@@ -7,26 +7,37 @@ export function NoteTextInput() {
     useEffect(() => {
         if (quillRef.current) {
             //console.log('mounted', quillRef.current.getEditor());
-            const quillEditor = quillRef.current.getEditor();
-            quillEditor.on('text-change', function (delta, oldDelta, source) {
+            const quill = quillRef.current.getEditor();
+            //console.log(quill.container);
+
+            // quill.container.addEventListener('input', () => {
+            //     const listElements = quill.container.querySelectorAll('ol');
+            //     console.log(listElements);
+            //     if (listElements.length > 0) {
+            //         console.log('new list created');
+            //     }
+            // });
+
+            function handleKeyDown(e) {
+                
+                    const selection = window.getSelection();
+                    //console.log(selection);
+                    //let {anchorNode, focusNode} = selection;
+                    //console.log(anchorNode.parentElement, focusNode.parentElement);
+
+                    const range = selection.getRangeAt(0);
+                    const line = range.startContainer;
+                    console.log(line);
+                
 
 
-                //console.log(content);
-                //console.log(delta, oldDelta);
-                const ops = delta.ops;
-                //console.log(ops);
 
 
-                for (let i = 0; i < ops.length; i++) {
-                    if (ops[i].attributes && ops[i].attributes.list === 'ordered') {
-                        // console.log('list ol created');
-                        const currContent = quillEditor.getContents();
-                        console.log(currContent);
-                    }
-                }
-            })
+            }
+
+            quill.container.addEventListener('input', handleKeyDown);
+
         }
-
     }, []);
 
 
