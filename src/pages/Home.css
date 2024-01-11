@@ -210,21 +210,3 @@
     text-align: left;
     outline: none;
 }
-
-.ql-toolbar {
-    display: none;
-}
-
-.ql-container {
-    border: none;
-}
-
-.ql-toolbar.ql-snow + .ql-container.ql-snow{
-    color: white;
-    border: none;
-}
-
-
-.ql-editor.ql-blank::before{
-    color: white !important;
-}
