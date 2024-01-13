@@ -4,19 +4,26 @@ import { useEffect, useRef, useState } from 'react';
 export function NoteTextInput() {
 
 
-    function generateNewLine(listInfo) {
+    function generateNewLine(listInfo, lenLeadingWhiteSpace) {
         let div = document.createElement('div');
+        div.classList.add('editor-child')
         let content;
-        if (listInfo.listType === 'UL') {
-            return 'temp ul';
-        } else if (listInfo.listType === 'OL') {
-            return 'temp ol';
+        if (listInfo.isList === true) {
+    
+            let whiteSpace = '';
+            for (let i = 0; i < lenLeadingWhiteSpace; i++) {
+                whiteSpace += '\u00A0';
+            }
+    
+            if (listInfo.listType === 'UL') {
+                content = document.createTextNode(`${whiteSpace}-` + '\u00A0')
+            }
         } else {
             content = document.createElement('br');
         }
-
+    
         div.appendChild(content);
-
+    
         return div;
     }
 
@@ -30,42 +37,75 @@ export function NoteTextInput() {
     }
 
     function handleKeyUp(e) {
-        if (e.code === 'Enter') {
+    if (e.code === 'Enter') {
 
-            const selection = window.getSelection();
-            const range = selection.getRangeAt(0);
-            let currLine = range.startContainer;
-            let parent = currLine.parentElement;
-            //console.log(parent.lastChild);
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        let currLine = range.startContainer;
+        let parent = currLine.parentElement;
+        //console.log(parent.lastChild);
 
+        //console.log(currLine);
 
-            let currLineText = currLine.wholeText;
-            // if(currLine.nodeType === 3){
-            //     currLineText = currLine.wholeText;
-            // }else{
-            //     currLineText = currLine.innerText;
-            // }
+        let currLineText = currLine.wholeText;
 
-
-            const listInfo = checkForList(currLineText);
-            //const rangeStartOffset = calculateOffSet(currLineText, listInfo);
-            const lenLeadingWhiteSpace = currLineText.length - currLineText.trimStart().length;
-            const newLine = generateNewLine(listInfo, lenLeadingWhiteSpace);
-
-            parent.appendChild(newLine);
+        if (currLineText === undefined) {
+            currLineText = '';
+        }
 
 
-            focusCaretOnNewLine(newLine, lenLeadingWhiteSpace);
+        const listInfo = checkForList(currLineText);
+        const lenLeadingWhiteSpace = currLineText.length - currLineText.trimStart().length;
+        const newLine = generateNewLine(listInfo, lenLeadingWhiteSpace);
 
-            // If the current line is the last one generate and insert a new one AT THE END
-            // if (currLine === parent.lastChild) {
-            //     //console.log('last one');
-            //     parent.appendChild(newLine);
-            // 
+        console.log(parent, currLine);
 
+        // This works when the editor is empty and the user just presses enter
+        if (currLine.id === 'editor') {
+            console.log('busted');
+            let div = document.createElement('div');
+            div.classList.add('editor-child')
+            let br = document.createElement('br');
+            div.appendChild(br);
+
+            let fLine = currLine.appendChild(div);
+
+            let newDiv = document.createElement('div');
+            newDiv.classList.add('editor-child')
+            let newBr = document.createElement('br');
+            newDiv.appendChild(newBr);
+
+            let newerLine = fLine.insertAdjacentElement('afterend', newDiv);
+            console.log(newerLine);
+            focusCaretOnNewLine(newerLine, 0);
+            return
+        }
+
+        // This works when editor is empty and the user types something
+        if (parent.id === 'editor') {
+            if (parent.childElementCount === 0) {
+                console.log('yooooo');
+                let div = document.createElement('div');
+                let content = document.createTextNode(currLineText);
+                div.appendChild(content);
+                console.log(parent.contains(currLine));
+                parent.replaceChild(div, currLine);
+
+                div.insertAdjacentElement('afterend', newLine)
+                return;
+            }
+
+            console.log('alteast 1 ', currLine);
+            currLine.insertAdjacentElement('afterend', newLine);
 
         }
+
+        console.log('outS');
+
+
+        focusCaretOnNewLine(newLine, lenLeadingWhiteSpace);
     }
+}
     return (
         <div contentEditable='true'
             onKeyUp={handleKeyUp}
