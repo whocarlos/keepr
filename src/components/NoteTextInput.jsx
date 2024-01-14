@@ -186,6 +186,7 @@ export function NoteTextInput() {
         <div contentEditable='true'
             onKeyUp={handleKeyUp}
             onKeyDown={handleKeyDown}
+            id='editor'
         ></div>
     )
 }
