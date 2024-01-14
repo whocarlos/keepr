@@ -101,10 +101,13 @@ export function NoteTextInput() {
                     div.insertAdjacentElement('afterend', newLine);
                     focusCaretOnNewLine(newLine, lenLeadingWhiteSpace);
                     return;
+                }else{
+                    console.log('call it*******');
+                currLine.insertAdjacentElement('afterend', newLine);
+                focusCaretOnNewLine(newLine, 0);
                 }
 
-                //console.log('alteast 1 ', currLine);
-                //currLine.insertAdjacentElement('afterend', newLine);
+                
 
             }
 
