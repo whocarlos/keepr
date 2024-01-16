@@ -20,43 +20,52 @@ export function NoteTextInput() {
         for (const mutation of mutationList) {
             if (mutation.type === "childList") {
                 //console.log("A child node has been added or removed.");
-
+    
                 const removedNode = mutation.removedNodes[0];
                 //console.log(removedNode);
-
+    
                 if (removedNode !== undefined) {
                     let { previousSibling } = mutation;
-                    let { nextSibling } = mutation;
-
+                    let {nextSibling} = mutation;
+    
                     console.log(previousSibling, nextSibling);
-
-                    if (previousSibling !== null && nextSibling !== null) {
+    
+                    if(previousSibling !== null && nextSibling !== null){
                         //console.log('busted?');
-
+    
                         let prevListInfo = checkForList(previousSibling.innerText);
                         let nextListInfo = checkForList(nextSibling.innerText);
-
-                        if (prevListInfo.listType === 'OL' && nextListInfo.listType === 'OL') {
+    
+                        if(prevListInfo.listType === 'OL' && nextListInfo.listType === 'OL'){
                             let num = prevListInfo.lastNum;
-
-                            while (true) {
+    
+                            while(true){
                                 let currListInfo = checkForList(nextSibling.innerText);
-
-                                if (currListInfo.listType !== 'OL') {
+    
+                                if(currListInfo.listType !== 'OL'){
                                     break;
                                 }
-
+    
                                 console.log('this ran');
-                                let match = nextSibling.innerText.match(/\D/);
-                                let sub = nextSibling.innerText.substring(match.index);
-                                console.log(sub);
-
+    
+                                let innerTextTrimmed = nextSibling.innerText.trimStart();
+                                let lenWSpace = nextSibling.innerText.length - innerTextTrimmed.length;
+                                let match = innerTextTrimmed.match(/\D/);
+                                console.log(match);
+                                let sub = innerTextTrimmed.substring(match.index);
+                                console.log('sub', sub);
+    
+                                let wSpace = '';
+                                for(let i = 0; i < lenWSpace; i++){
+                                    wSpace += '\u00A0';
+                                }
+    
                                 num += 1;
-                                nextSibling.innerText = `${num}${sub}`;
-
+                                nextSibling.innerText = `${wSpace}${num}${sub}`;
+    
                                 nextSibling = nextSibling.nextSibling;
-
-                                if (nextSibling === null) {
+    
+                                if(nextSibling === null){
                                     break;
                                 }
                             }
