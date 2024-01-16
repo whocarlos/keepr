@@ -4,6 +4,70 @@ import { useEffect, useRef, useState } from 'react';
 export function NoteTextInput() {
 
 
+    const contentEditableRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new MutationObserver(mutationHandler);
+        observer.observe(contentEditableRef.current, { attributes: true, childList: true, subtree: false });
+
+        return () => {
+            observer.disconnect();
+        }
+    }, []);
+
+
+    function mutationHandler(mutationList, observer) {
+        for (const mutation of mutationList) {
+            if (mutation.type === "childList") {
+                //console.log("A child node has been added or removed.");
+
+                const removedNode = mutation.removedNodes[0];
+                //console.log(removedNode);
+
+                if (removedNode !== undefined) {
+                    let { previousSibling } = mutation;
+                    let { nextSibling } = mutation;
+
+                    console.log(previousSibling, nextSibling);
+
+                    if (previousSibling !== null && nextSibling !== null) {
+                        //console.log('busted?');
+
+                        let prevListInfo = checkForList(previousSibling.innerText);
+                        let nextListInfo = checkForList(nextSibling.innerText);
+
+                        if (prevListInfo.listType === 'OL' && nextListInfo.listType === 'OL') {
+                            let num = prevListInfo.lastNum;
+
+                            while (true) {
+                                let currListInfo = checkForList(nextSibling.innerText);
+
+                                if (currListInfo.listType !== 'OL') {
+                                    break;
+                                }
+
+                                console.log('this ran');
+                                let match = nextSibling.innerText.match(/\D/);
+                                let sub = nextSibling.innerText.substring(match.index);
+                                console.log(sub);
+
+                                num += 1;
+                                nextSibling.innerText = `${num}${sub}`;
+
+                                nextSibling = nextSibling.nextSibling;
+
+                                if (nextSibling === null) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     function generateNewLine(listInfo, lenLeadingWhiteSpace) {
         console.log(listInfo);
         let div = document.createElement('div');
@@ -101,13 +165,13 @@ export function NoteTextInput() {
                     div.insertAdjacentElement('afterend', newLine);
                     focusCaretOnNewLine(newLine, lenLeadingWhiteSpace);
                     return;
-                }else{
+                } else {
                     console.log('call it*******');
-                currLine.insertAdjacentElement('afterend', newLine);
-                focusCaretOnNewLine(newLine, 0);
+                    currLine.insertAdjacentElement('afterend', newLine);
+                    focusCaretOnNewLine(newLine, 0);
                 }
 
-                
+
 
             }
 
@@ -185,11 +249,14 @@ export function NoteTextInput() {
         }
     }
 
+
+
     return (
         <div contentEditable='true'
             onKeyUp={handleKeyUp}
             onKeyDown={handleKeyDown}
             id='editor'
+            ref={contentEditableRef}
         ></div>
     )
 }
