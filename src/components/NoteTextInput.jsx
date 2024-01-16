@@ -200,19 +200,20 @@ export function NoteTextInput() {
             listType: 'NO_LIST',
             lastNum: -1
         };
-
+    
         const line = inputLine.trim();
-
-
-
-
-
+    
+        // sorry
+        const otherLine = inputLine.trimStart();
+        console.log(otherLine.length);
+    
+    
         // Check for Ul
         if (line[0] === '-') {
             if (line[1] === ' ' && line[2] !== undefined) {
-                console.log('ul mfer');
-
-
+                //console.log('ul mfer');
+    
+    
                 listInfo = {
                     isList: true,
                     listType: 'UL',
@@ -220,23 +221,32 @@ export function NoteTextInput() {
                 };
             }
         }
-
+    
         // Check for OL
-        if (line.length >= 4) {
-
+        // Change len from 4 to 3 - lets test this
+    
+        //console.log(otherLine.length, 'rrrrrrrrrrr');
+        if (otherLine.length >= 3) {
+    
+    
+            //console.log('yooo?');
             // Find position of . or )
-            const match = line.match(/\D/);
-
+            const match = otherLine.match(/\D/);
+    
+            //console.log(match, 'here-----');
             if (match !== null) {
                 //console.log('hereee');
                 if (match[0] === '.' || match[0] === ')') {
                     //console.log(match.index);
-                    if (line[match.index + 1] === ' ' && line[match.index + 2] !== undefined) {
-                        console.log('ol mfer $$$$$$$$$$$');
-
+                    console.log('eeeere---');
+                    // && line[match.index + 2] !== undefined  - Lets test this
+                    //console.log(otherLine[match.index + 1] === '\u00A0');
+                    if (otherLine[match.index + 1] === '\u00A0' || otherLine[match.index + 1] === ' ') {
+                       console.log('ol mfer $$$$$$$$$$$');
+    
                         let lastNum = line.substring(0, match.index);
                         lastNum = parseInt(lastNum);
-
+    
                         listInfo = {
                             isList: true,
                             listType: 'OL',
@@ -247,8 +257,8 @@ export function NoteTextInput() {
                 }
             }
         }
-
-        console.log('the info ', listInfo);
+    
+        //console.log('the info ', listInfo);
         return listInfo;
     }
 
