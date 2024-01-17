@@ -323,13 +323,22 @@ export function NoteTextInput() {
     }
 
 
+    function handlePaste(e){
+        e.preventDefault();
+        //console.log(e.clipboardData.getData('text/plain'), 'yo');
 
+        const plainText = e.clipboardData.getData('text/plain');
+        document.execCommand('insertHTML', false, plainText);
+
+    }
     return (
         <div contentEditable='true'
             onKeyUp={handleKeyUp}
             onKeyDown={handleKeyDown}
             id='editor'
             ref={contentEditableRef}
+
+            onPaste={handlePaste}
         ></div>
     )
 }
