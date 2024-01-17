@@ -328,6 +328,7 @@ export function NoteTextInput() {
         //console.log(e.clipboardData.getData('text/plain'), 'yo');
 
         const plainText = e.clipboardData.getData('text/plain');
+        console.log(plainText.split('\n'));
         document.execCommand('insertHTML', false, plainText);
 
     }
