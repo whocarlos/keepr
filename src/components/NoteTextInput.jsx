@@ -177,7 +177,7 @@ export function NoteTextInput() {
             let parent = currLine.parentElement;
             //console.log(parent.lastChild);
 
-            //console.log(currLine);
+            console.log(currLine);
 
             let currLineText = currLine.wholeText;
 
@@ -264,7 +264,7 @@ export function NoteTextInput() {
     
         // Check for Ul
         if (line[0] === '-') {
-            if (line[1] === ' ' && line[2] !== undefined) {
+            if ((line[1] === '\u00A0' || line[1] === ' ') && line[2] !== undefined) {
                 //console.log('ul mfer');
     
     
