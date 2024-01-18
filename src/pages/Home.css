@@ -216,4 +216,5 @@
     text-align: left;
     padding: 1rem;
     white-space: pre;
+    outline: none;
 }
