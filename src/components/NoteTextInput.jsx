@@ -19,113 +19,113 @@ export function NoteTextInput() {
     function mutationHandler(mutationList, observer) {
         for (const mutation of mutationList) {
             if (mutation.type === "childList") {
-    
+
                 const removedNode = mutation.removedNodes[0];
-    
+
                 const addedNode = mutation.addedNodes[0];
-    
+
                 console.log(addedNode, removedNode);
-    
+
                 if (removedNode !== undefined) {
                     let { previousSibling } = mutation;
-                    let {nextSibling} = mutation;
-    
+                    let { nextSibling } = mutation;
+
                     console.log(previousSibling, nextSibling);
-    
-                    if(previousSibling !== null && nextSibling !== null){
+
+                    if (previousSibling !== null && nextSibling !== null) {
                         //console.log('busted?');
-    
+
                         let prevListInfo = checkForList(previousSibling.innerText);
                         let nextListInfo = checkForList(nextSibling.innerText);
-    
-                        if(prevListInfo.listType === 'OL' && nextListInfo.listType === 'OL'){
+
+                        if (prevListInfo.listType === 'OL' && nextListInfo.listType === 'OL') {
                             let num = prevListInfo.lastNum;
-    
-                            while(true){
+
+                            while (true) {
                                 let currListInfo = checkForList(nextSibling.innerText);
-    
-                                if(currListInfo.listType !== 'OL'){
+
+                                if (currListInfo.listType !== 'OL') {
                                     break;
                                 }
-    
+
                                 console.log('this ran');
-    
+
                                 let innerTextTrimmed = nextSibling.innerText.trimStart();
                                 let lenWSpace = nextSibling.innerText.length - innerTextTrimmed.length;
                                 let match = innerTextTrimmed.match(/\D/);
                                 console.log(match);
                                 let sub = innerTextTrimmed.substring(match.index);
                                 console.log('sub', sub);
-    
+
                                 let wSpace = '';
-                                for(let i = 0; i < lenWSpace; i++){
+                                for (let i = 0; i < lenWSpace; i++) {
                                     wSpace += '\u00A0';
                                 }
-    
+
                                 num += 1;
                                 nextSibling.innerText = `${wSpace}${num}${sub}`;
-    
+
                                 nextSibling = nextSibling.nextSibling;
-    
-                                if(nextSibling === null){
+
+                                if (nextSibling === null) {
                                     break;
                                 }
                             }
                         }
                     }
                 }
-    
-                if(addedNode !== undefined){
-                    let {nextSibling} = mutation;
-    
-                    if(nextSibling === null){
+
+                if (addedNode !== undefined) {
+                    let { nextSibling } = mutation;
+
+                    if (nextSibling === null) {
                         return;
                     }
-    
+
                     let nextListInfo = checkForList(nextSibling.innerText);
                     let currListInfo = checkForList(addedNode.innerText)
-    
+
                     console.log(currListInfo, addedNode.innerText);
-    
-                    if(nextListInfo.listType === 'OL'){
+
+                    if (nextListInfo.listType === 'OL') {
                         let num = currListInfo.lastNum;
                         console.log('numb', num);
-    
-                        while(true){
+
+                        while (true) {
                             let currListInfo = checkForList(nextSibling.innerText);
-    
-                            if(currListInfo.listType !== 'OL'){
+
+                            if (currListInfo.listType !== 'OL') {
                                 break;
                             }
-    
+
                             console.log('this ran');
-    
+
                             let innerTextTrimmed = nextSibling.innerText.trimStart();
                             let lenWSpace = nextSibling.innerText.length - innerTextTrimmed.length;
                             let match = innerTextTrimmed.match(/\D/);
                             console.log(match);
                             let sub = innerTextTrimmed.substring(match.index);
                             console.log('sub', sub);
-    
+
                             let wSpace = '';
-                            for(let i = 0; i < lenWSpace; i++){
+                            for (let i = 0; i < lenWSpace; i++) {
                                 wSpace += '\u00A0';
                             }
-    
+
                             num += 1;
                             nextSibling.innerText = `${wSpace}${num}${sub}`;
-    
+
                             nextSibling = nextSibling.nextSibling;
-    
-                            if(nextSibling === null){
+
+                            if (nextSibling === null) {
                                 break;
                             }
                         }
                     }
-                    
+
                 }
-    
-                
+
+
             }
         }
     }
@@ -254,20 +254,20 @@ export function NoteTextInput() {
             listType: 'NO_LIST',
             lastNum: -1
         };
-    
+
         const line = inputLine.trim();
-    
+
         // sorry
         const otherLine = inputLine.trimStart();
         console.log(otherLine.length);
-    
-    
+
+
         // Check for Ul
         if (line[0] === '-') {
             if ((line[1] === '\u00A0' || line[1] === ' ') && line[2] !== undefined) {
                 //console.log('ul mfer');
-    
-    
+
+
                 listInfo = {
                     isList: true,
                     listType: 'UL',
@@ -275,18 +275,18 @@ export function NoteTextInput() {
                 };
             }
         }
-    
+
         // Check for OL
         // Change len from 4 to 3 - lets test this
-    
+
         //console.log(otherLine.length, 'rrrrrrrrrrr');
         if (otherLine.length >= 3) {
-    
-    
+
+
             //console.log('yooo?');
             // Find position of . or )
             const match = otherLine.match(/\D/);
-    
+
             //console.log(match, 'here-----');
             if (match !== null) {
                 //console.log('hereee');
@@ -296,11 +296,11 @@ export function NoteTextInput() {
                     // && line[match.index + 2] !== undefined  - Lets test this
                     //console.log(otherLine[match.index + 1] === '\u00A0');
                     if (otherLine[match.index + 1] === '\u00A0' || otherLine[match.index + 1] === ' ') {
-                       console.log('ol mfer $$$$$$$$$$$');
-    
+                        console.log('ol mfer $$$$$$$$$$$');
+
                         let lastNum = line.substring(0, match.index);
                         lastNum = parseInt(lastNum);
-    
+
                         listInfo = {
                             isList: true,
                             listType: 'OL',
@@ -311,7 +311,7 @@ export function NoteTextInput() {
                 }
             }
         }
-    
+
         //console.log('the info ', listInfo);
         return listInfo;
     }
@@ -323,7 +323,7 @@ export function NoteTextInput() {
     }
 
 
-    function handlePaste(e){
+    function handlePaste(e) {
         e.preventDefault();
         //console.log(e.clipboardData.getData('text/plain'), 'yo');
 
