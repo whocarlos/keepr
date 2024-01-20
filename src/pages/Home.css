@@ -219,3 +219,8 @@
     white-space: pre;
     outline: none;
 }
+
+[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: white;
+}

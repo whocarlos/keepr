@@ -340,6 +340,8 @@ export function NoteTextInput() {
             ref={contentEditableRef}
 
             onPaste={handlePaste}
+
+            data-placeholder="Add a note..."
         ></div>
     )
 }
