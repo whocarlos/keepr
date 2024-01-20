@@ -37,6 +37,16 @@ export async function createNoteAction({ request }) {
   return null
 }
 
+export async function homeLoader(){
+  const {data, error} = await supabase.from('notes').select();
+
+  if(error) console.log(error);
+
+  console.log(data);
+
+  return data
+}
+
 function Home() {
   const session = useAuth();
   let submit = useSubmit();

@@ -8,7 +8,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-import Home, {createNoteAction} from "./pages/Home.jsx"
+import Home, {createNoteAction, homeLoader} from "./pages/Home.jsx"
 import Login, {loginAction} from './pages/Login.jsx'
 import Signup, {signUpAction} from './pages/Signup.jsx'
  
@@ -20,7 +20,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:<Protected> <Home /> </Protected>,
-    action: createNoteAction
+    action: createNoteAction,
+    loader: homeLoader
   },
   {
     path: "/login",
