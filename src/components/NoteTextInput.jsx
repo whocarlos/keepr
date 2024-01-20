@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 
 
-export function NoteTextInput() {
-
-
+export const NoteTextInput = forwardRef((props, ref) => {
     const contentEditableRef = useRef(null);
+
+    if (props.forwardedRef) {
+        props.forwardedRef.current = contentEditableRef.current;
+    }
 
     useEffect(() => {
         const observer = new MutationObserver(mutationHandler);
@@ -14,7 +16,6 @@ export function NoteTextInput() {
             observer.disconnect();
         }
     }, []);
-
 
     function mutationHandler(mutationList, observer) {
         for (const mutation of mutationList) {
@@ -130,7 +131,6 @@ export function NoteTextInput() {
         }
     }
 
-
     function generateNewLine(listInfo, lenLeadingWhiteSpace) {
         console.log(listInfo);
         let div = document.createElement('div');
@@ -167,6 +167,7 @@ export function NoteTextInput() {
         selection.removeAllRanges();
         selection.addRange(newRange);
     }
+
 
     function handleKeyUp(e) {
         if (e.code === 'Enter') {
@@ -332,16 +333,19 @@ export function NoteTextInput() {
         document.execCommand('insertHTML', false, plainText);
 
     }
+
+
+
+
     return (
-        <div contentEditable='true'
+        <div
+            contentEditable='true'
             onKeyUp={handleKeyUp}
             onKeyDown={handleKeyDown}
             id='editor'
             ref={contentEditableRef}
-
             onPaste={handlePaste}
-
             data-placeholder="Add a note..."
         ></div>
-    )
-}
+    );
+})
