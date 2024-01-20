@@ -8,10 +8,10 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-import Home from "./pages/Home.jsx"
+import Home, {createNoteAction} from "./pages/Home.jsx"
 import Login, {loginAction} from './pages/Login.jsx'
 import Signup, {signUpAction} from './pages/Signup.jsx'
-
+ 
 import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
@@ -19,7 +19,8 @@ import { CheckSession } from './components/CheckSession.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Protected> <Home /> </Protected>
+    element:<Protected> <Home /> </Protected>,
+    action: createNoteAction
   },
   {
     path: "/login",

@@ -7,31 +7,17 @@ import { useState, useRef } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
 import { NoteContentInput } from "../components/NoteContentInput";
 
+export async function createNoteAction({request}){
+  let formData = await request.formData();
+  console.log(formData);
+
+  return null
+}
 
 function Home() {
   const session = useAuth();
-  //console.log(session.user)
 
-  // const[isCheck, setIscheck] = useState(false);
-
-  // function testCheckbox(){
-  //   console.log('u clicked the checkbox');
-  //   setIscheck(!isCheck);
-  // }
-
-  const myRef = useRef(null);
-
-  function handleInput() {
-    console.log(myRef.current.innerHTML);
-    console.log(myRef.current.innerText);
-  }
-
-
-
-  function handleKeyDow(e) {
-    console.log(e.code)
-  }
-
+ 
   return (
     <div>
       <Navbar />
@@ -39,7 +25,7 @@ function Home() {
       <div className="main">
         <div className="create-container">
           <div className='form-container'>
-            <Form>
+            <Form method="post" action="/">
               <NoteTitleInput />
               <NoteContentInput />
               <NoteSettings />

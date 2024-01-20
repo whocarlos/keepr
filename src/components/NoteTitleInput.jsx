@@ -10,7 +10,7 @@ export function NoteTitleInput() {
 
     return (
         <div className="title-container">
-            <input type="text" id="title-input" placeholder="Title" />
+            <input type="text" id="title-input" placeholder="Title" name="title" />
             <label htmlFor="bookmark" className="bookmark-icon">
                 {
                     isCheck ?
