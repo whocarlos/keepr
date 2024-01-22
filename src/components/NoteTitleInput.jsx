@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BookmarkIconSolid } from "./icons/BookmarkIconSolid";
 import { BookmarkIcon } from "./icons/BookmarkIcon";
-export function NoteTitleInput() {
+export function NoteTitleInput({title}) {
     const [isCheck, setIscheck] = useState(false);
 
 
@@ -12,7 +12,7 @@ export function NoteTitleInput() {
 
     return (
         <div className="title-container">
-            <input type="text" id="title-input" placeholder="Title" name="title" />
+            <input type="text" id="title-input" placeholder="Title" name="title" value={title !== null ? title : ''} />
             <label htmlFor="bookmark" className="bookmark-icon">
                 {
                     isCheck ?

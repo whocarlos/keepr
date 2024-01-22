@@ -15,6 +15,7 @@ export async function createNoteAction({ request }) {
   let formData = await request.formData();
 
   let content = formData.get("content");
+  let contentHtml = formData.get("contentHtml");
   let title = formData.get('title');
   //console.log(title, content); 
 
@@ -28,7 +29,7 @@ export async function createNoteAction({ request }) {
   }
 
 
-  const { data, error } = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id }]);
+  const { data, error } = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id, content_html:contentHtml }]);
 
   if (error) {
     console.log(error);
@@ -65,10 +66,12 @@ function Home() {
 
     console.log(contentRef.current);
 
-    let noteContent = contentRef.current.innerText;
+    let noteContentText = contentRef.current.innerText;
+    let noteContentHtml = contentRef.current.innerHTML
     const formData = new FormData(formRef.current);
 
-    formData.append("content", noteContent);
+    formData.append("content", noteContentText);
+    formData.append("contentHtml", noteContentHtml);
 
 
     submit(formData, { method: "post", action: '/' });
@@ -87,12 +90,7 @@ function Home() {
         <div className="create-container">
           {isNoteFormOpen
             ?
-            <div className='form-container'>
-
               <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
-
-            </div>
-
             :
             <div className="empty-form-container" onClick={showNote}>
               <CreateNote />
@@ -104,6 +102,9 @@ function Home() {
         </div>
 
         <div className="notes-container">
+          {notes.map((note) => {
+            return <Note title={note.title} key={note.id} content={note.content_html}/>
+          })}
         </div>
       </div>
     </div>

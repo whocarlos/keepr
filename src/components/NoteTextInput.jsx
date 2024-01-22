@@ -346,6 +346,7 @@ export const NoteTextInput = forwardRef((props, ref) => {
             ref={contentEditableRef}
             onPaste={handlePaste}
             data-placeholder="Add a note..."
+            dangerouslySetInnerHTML={{__html: props.content}}
         ></div>
     );
 })
