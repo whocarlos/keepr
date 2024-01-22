@@ -74,6 +74,10 @@ function Home() {
     submit(formData, { method: "post", action: '/' });
   }
 
+  function showNote(){
+    setIsNoteFormOpen(true)
+  }
+
 
   return (
     <div>
@@ -90,7 +94,7 @@ function Home() {
             </div>
 
             :
-            <div className="empty-form-container">
+            <div className="empty-form-container" onClick={showNote}>
               <CreateNote />
             </div>
           }
