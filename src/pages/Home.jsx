@@ -81,13 +81,22 @@ function Home() {
       <hr className="navbar-separation" />
       <div className="main">
         <div className="create-container">
-          <div className='form-container'>
-            {isNoteFormOpen ?
+          {isNoteFormOpen
+            ?
+            <div className='form-container'>
+
               <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
-              :
+
+            </div>
+
+            :
+            <div className="empty-form-container">
               <CreateNote />
-            }
-          </div>
+            </div>
+          }
+
+
+
         </div>
 
         <div className="notes-container">

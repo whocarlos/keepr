@@ -224,3 +224,35 @@
     content: attr(data-placeholder);
     color: white;
 }
+
+
+.empty-form-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+    width: 25em;
+    max-width: 25em;
+    padding: 0.5em;
+    border-radius: 8px;
+    border: 1px solid white;
+}
+
+.create-note-icons-container{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    padding-left: 0.5rem;
+}
+
+.create-note-icon{
+    width: 20px;
+    height: 20px;
+}
+
+.create-note-input{
+    width: 70%;
+}
+
+#createNoteInput{
+    width: 100%;
+}
