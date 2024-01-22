@@ -1,13 +1,14 @@
 import { useAuth } from "../contexts/Auth";
 import { Navbar } from "../components/Navbar";
 import { NoteSettings } from "../components/NoteSettings";
-import { Form, useSubmit } from "react-router-dom";
+import { Form, useLoaderData, useSubmit } from "react-router-dom";
 import './Home.css'
 import { useState, useRef } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
 import { NoteContentInput } from "../components/NoteContentInput";
 
 import supabase from "../supabase";
+import { Note } from "../components/Note";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -48,6 +49,8 @@ export async function homeLoader(){
 }
 
 function Home() {
+  const notes = useLoaderData();
+  console.log('notes', notes);
   const session = useAuth();
   let submit = useSubmit();
 
@@ -56,6 +59,8 @@ function Home() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    console.log(contentRef.current);
 
     let noteContent = contentRef.current.innerText;
     const formData = new FormData(formRef.current);
@@ -74,13 +79,11 @@ function Home() {
       <div className="main">
         <div className="create-container">
           <div className='form-container'>
-            <Form method="post" action="/" ref={formRef} onSubmit={handleSubmit} >
-              <NoteTitleInput />
-              <NoteContentInput forwardedRef={contentRef} />
-              <NoteSettings />
-
-            </Form>
+            <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
           </div>
+        </div>
+
+        <div className="notes-container">
         </div>
       </div>
     </div>
