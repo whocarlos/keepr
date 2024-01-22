@@ -9,6 +9,7 @@ import { NoteContentInput } from "../components/NoteContentInput";
 
 import supabase from "../supabase";
 import { Note } from "../components/Note";
+import { CreateNote } from "../components/CreateNote";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -22,26 +23,26 @@ export async function createNoteAction({ request }) {
 
   if (sessionError) {
     console.log(sessionError);
-  }else {
+  } else {
     console.log(session.session.user.id);
   }
 
 
-  const {data, error} = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id}]);
+  const { data, error } = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id }]);
 
-  if(error){
+  if (error) {
     console.log(error);
-  }else {
+  } else {
     console.log(data);
   }
 
   return null
 }
 
-export async function homeLoader(){
-  const {data, error} = await supabase.from('notes').select();
+export async function homeLoader() {
+  const { data, error } = await supabase.from('notes').select();
 
-  if(error) console.log(error);
+  if (error) console.log(error);
 
   console.log(data);
 
@@ -56,6 +57,8 @@ function Home() {
 
   const formRef = useRef(null);
   const contentRef = useRef(null);
+
+  const [isNoteFormOpen, setIsNoteFormOpen] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,7 +82,11 @@ function Home() {
       <div className="main">
         <div className="create-container">
           <div className='form-container'>
-            <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
+            {isNoteFormOpen ?
+              <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
+              :
+              <CreateNote />
+            }
           </div>
         </div>
 
