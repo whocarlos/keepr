@@ -58,7 +58,7 @@ function Home() {
   const formRef = useRef(null);
   const contentRef = useRef(null);
 
-  const [isNoteFormOpen, setIsNoteFormOpen] = useState(false);
+  const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 
   function handleSubmit(e) {
     e.preventDefault();
