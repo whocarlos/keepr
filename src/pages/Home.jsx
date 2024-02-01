@@ -10,6 +10,7 @@ import { NoteContentInput } from "../components/NoteContentInput";
 import supabase from "../supabase";
 import { Note } from "../components/Note";
 import { CreateNote } from "../components/CreateNote";
+import { Menu } from "../components/Menu";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -29,7 +30,7 @@ export async function createNoteAction({ request }) {
   }
 
 
-  const { data, error } = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id, content_html:contentHtml }]);
+  const { data, error } = await supabase.from('notes').insert([{ title: title, content: content, user_id: session.session.user.id, content_html: contentHtml }]);
 
   if (error) {
     console.log(error);
@@ -77,7 +78,7 @@ function Home() {
     submit(formData, { method: "post", action: '/' });
   }
 
-  function showNote(){
+  function showNote() {
     setIsNoteFormOpen(true)
   }
 
@@ -86,26 +87,35 @@ function Home() {
     <div>
       <Navbar />
       <hr className="navbar-separation" />
+
       <div className="main">
-        <div className="create-container">
-          {isNoteFormOpen
-            ?
+
+        <Menu />
+
+        <div>
+          <div className="create-container">
+            {isNoteFormOpen
+              ?
               <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
-            :
-            <div className="empty-form-container" onClick={showNote}>
-              <CreateNote />
-            </div>
-          }
+              :
+              <div className="empty-form-container" onClick={showNote}>
+                <CreateNote />
+              </div>
+            }
 
 
 
+          </div>
+
+          <div className="notes-container">
+            {notes.map((note) => {
+              return <Note title={note.title} key={note.id} content={note.content_html} />
+            })}
+          </div>
         </div>
 
-        <div className="notes-container">
-          {notes.map((note) => {
-            return <Note title={note.title} key={note.id} content={note.content_html}/>
-          })}
-        </div>
+
+
       </div>
     </div>
   )

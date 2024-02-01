@@ -97,7 +97,8 @@
 
 
 .main{
-    background-color: chocolate;
+    background-color: chocolate;    
+    display: flex;
 }
 
 .note-settings-icon{
@@ -262,3 +263,29 @@
     display: block;
     position: absolute;
 } */
+
+
+.notes-container{
+    background-color: blueviolet;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+
+.menu{
+    background-color: chartreuse;
+    width: 30rem;
+    
+}
+
+.menu-item{
+    background-color: aqua;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.menu-item > input{
+    position: absolute;
+    opacity: 0;
+}

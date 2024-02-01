@@ -10,7 +10,6 @@ export function Note({ forwardedRef, handleSubmit, formRef, title, content }) {
                 <NoteTitleInput title={title} /> 
                 <NoteContentInput forwardedRef={forwardedRef}  content={content}/>
                 <NoteSettings />
-
             </Form> 
         </div>
 
