@@ -274,18 +274,32 @@
 
 
 .menu{
-    background-color: chartreuse;
-    width: 30rem;
-    
+    width: 45rem;
+    color: white;
+    background-color: #202124 ;
+}
+
+fieldset{
+    border: 0;
 }
 
 .menu-item{
-    background-color: aqua;
-    height: 2rem;
-    margin-bottom: 0.5rem;
+    height: 3rem;
+    padding: 1.5rem 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .menu-item > input{
     position: absolute;
     opacity: 0;
+}
+
+.menu-item > label{
+    padding-left: 1.5rem;
+}
+
+.menu-icon{
+    width: 25px;
+    height: 25px;
 }
