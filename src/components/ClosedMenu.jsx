@@ -5,26 +5,40 @@ import { ArchiveIcon } from "./icons/ArchiveIcon"
 import { TrashIcon } from "./icons/TrashIcon"
 export function ClosedMenu() {
     return (
-        <div className="menu">
-            <div className="menu-icon">
-                <LightbulbIcon />
+        <div className="closed-menu">
+            <div className="menu-item">
+                <div className="menu-icon">
+                    <LightbulbIcon />
+                </div>
             </div>
 
-            <div className="menu-icon">
-                <ReminderIcon />
+            <div className="menu-item">
+                <div className="menu-icon">
+                    <ReminderIcon />
+                </div>
             </div>
 
-            <div className="menu-icon">
-                <EditIcon />
+
+            <div className="menu-item">
+                <div className="menu-icon">
+                    <EditIcon />
+                </div>
             </div>
 
-            <div className="menu-icon">
-                <ArchiveIcon />
+
+            <div className="menu-item">
+                <div className="menu-icon">
+                    <ArchiveIcon />
+                </div>
             </div>
 
-            <div className="menu-icon">
-                <TrashIcon />
+
+            <div className="menu-item">
+                <div className="menu-icon">
+                    <TrashIcon />
+                </div>
             </div>
+
         </div>
     )
 }

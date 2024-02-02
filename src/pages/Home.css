@@ -303,3 +303,9 @@ fieldset{
     width: 25px;
     height: 25px;
 }
+
+.closed-menu{
+    width: 20rem;
+    color: white;
+    background-color: #202124 ;
+}

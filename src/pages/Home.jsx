@@ -99,7 +99,6 @@ function Home() {
           isMenuOpen ?
             <Menu /> :
             <ClosedMenu />
-
         }
 
 
