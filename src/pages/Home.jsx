@@ -11,6 +11,7 @@ import supabase from "../supabase";
 import { Note } from "../components/Note";
 import { CreateNote } from "../components/CreateNote";
 import { Menu } from "../components/Menu";
+import { ClosedMenu } from "../components/ClosedMenu";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -62,6 +63,8 @@ function Home() {
 
   const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -82,15 +85,23 @@ function Home() {
     setIsNoteFormOpen(true)
   }
 
-
+  function toggleMenu(){
+    setIsMenuOpen(prev => !prev);
+  }
   return (
     <div>
-      <Navbar />
+      <Navbar toggleMenu={toggleMenu} />
       <hr className="navbar-separation" />
 
       <div className="main">
 
-        <Menu />
+        {
+          isMenuOpen ?
+            <Menu /> :
+            <ClosedMenu />
+
+        }
+
 
         <div>
           <div className="create-container">

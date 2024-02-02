@@ -6,6 +6,8 @@ import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
 
 export function Menu() {
+
+
     return (
         <div className="menu">
             <Form>

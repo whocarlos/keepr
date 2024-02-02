@@ -1,8 +1,8 @@
-export function Navbar() {
+export function Navbar({toggleMenu}) {
     return (
         <div className="navbar">
 
-            <div className="ham-logo">
+            <div className="ham-logo" onClick={toggleMenu}>
 
                 <div className="ham-container">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
