@@ -47,14 +47,14 @@ export async function homeLoader() {
 
   if (error) console.log(error);
 
-  console.log(data);
+ // console.log(data);
 
   return data
 }
 
 function Home() {
   const notes = useLoaderData();
-  console.log('notes', notes);
+ // console.log('notes', notes);
   const session = useAuth();
   let submit = useSubmit();
 
@@ -64,6 +64,8 @@ function Home() {
   const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -96,9 +98,9 @@ function Home() {
       <div className="main">
 
         {
-          isMenuOpen ?
-            <Menu /> :
-            <ClosedMenu />
+          isMenuOpen || isMenuHovered ?
+            <Menu isMenuHovered={isMenuHovered} setIsMenuHovered={setIsMenuHovered}/> :
+            <ClosedMenu setIsMenuHovered={setIsMenuHovered}/>
         }
 
 

@@ -4,12 +4,22 @@ import { ReminderIcon } from "./icons/ReminderIcon";
 import { EditIcon } from "./icons/EditIcon";
 import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
+import { useEffect, useRef } from "react";
 
-export function Menu() {
+export function Menu({isMenuHovered, setIsMenuHovered}) {
+    const menuRef = useRef(null);
 
+    useEffect(() => {
+        if(isMenuHovered){
+            console.log('yo---- ', menuRef.current);
+
+            menuRef.current.addEventListener('mouseleave', () => setIsMenuHovered(false));
+            menuRef.current.style.position = 'absolute';
+        }
+    }, [])
 
     return (
-        <div className="menu">
+        <div className="menu" ref={menuRef}>
             <Form>
                 <fieldset>
                     <div className="menu-item">

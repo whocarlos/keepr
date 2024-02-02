@@ -3,9 +3,9 @@ import { ReminderIcon } from "./icons/ReminderIcon"
 import { EditIcon } from "./icons/EditIcon"
 import { ArchiveIcon } from "./icons/ArchiveIcon"
 import { TrashIcon } from "./icons/TrashIcon"
-export function ClosedMenu() {
+export function ClosedMenu({setIsMenuHovered}) {
     return (
-        <div className="closed-menu">
+        <div className="closed-menu" onMouseOver={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)}>
             <div className="menu-item">
                 <div className="menu-icon">
                     <LightbulbIcon />

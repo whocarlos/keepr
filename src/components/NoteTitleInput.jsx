@@ -12,7 +12,7 @@ export function NoteTitleInput({title}) {
 
     return (
         <div className="title-container">
-            <input type="text" id="title-input" placeholder="Title" name="title" value={title !== null ? title : ''} />
+            <input type="text" id="title-input" placeholder="Title" name="title" defaultValue={title !== null ? title : ''} />
             <label htmlFor="bookmark" className="bookmark-icon">
                 {
                     isCheck ?
