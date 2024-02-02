@@ -6,7 +6,7 @@ export function Note({ forwardedRef, handleSubmit, formRef, title, content }) {
    // console.log(title, content);
     return (
         <div className="form-container">
-            <Form method="post" action="/" ref={formRef} onSubmit={handleSubmit} >
+            <Form method="post" action="/" ref={formRef} onSubmit={handleSubmit} >  
                 <NoteTitleInput title={title} /> 
                 <NoteContentInput forwardedRef={forwardedRef}  content={content}/>
                 <NoteSettings />

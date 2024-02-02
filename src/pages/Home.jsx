@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/Auth";
 import { Navbar } from "../components/Navbar";
 import { NoteSettings } from "../components/NoteSettings";
-import { Form, useLoaderData, useSubmit } from "react-router-dom";
+import { Form, useLoaderData, useSubmit, Outlet } from "react-router-dom";
 import './Home.css'
 import { useState, useRef } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
@@ -92,6 +92,7 @@ function Home() {
   }
   return (
     <div>
+      <Outlet />
       <Navbar toggleMenu={toggleMenu} />
       <hr className="navbar-separation" />
 

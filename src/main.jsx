@@ -20,6 +20,20 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:<Protected> <Home /> </Protected>,
+    children: [
+      {
+        path: "trash",
+        element: <p>trash</p>
+      },
+      {
+        path: "reminders",
+        element: <p>reminders</p>
+      },
+      {
+        path: "archive",
+        element: <p>archive</p>
+      }
+    ],
     action: createNoteAction,
     loader: homeLoader
   },

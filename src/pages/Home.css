@@ -270,11 +270,12 @@
     display: flex;
     flex-wrap: wrap;
     height: 100vh;
+    padding-left: 3.5rem; /* Add paddign to separate from closed menu*/
 }
 
-
 .menu{
-    width: 40rem;
+    width: 30rem;
+    height: 100vh;
     color: white;
     background-color: #202124 ;
 }
@@ -288,6 +289,16 @@ fieldset{
     padding: 1.5rem 1rem;
     display: flex;
     align-items: center;
+}
+
+
+
+.menu-item:hover{
+    background-color: aqua;
+}
+
+.menu-item *{
+    pointer-events: none;
 }
 
 .menu-item > input{
@@ -305,7 +316,7 @@ fieldset{
 }
 
 .closed-menu{
-    width: 20rem;
+    width: 7rem;
     color: white;
-    background-color: #202124 ;
+    background-color: red ;
 }
