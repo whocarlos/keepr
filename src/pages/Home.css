@@ -293,9 +293,9 @@ fieldset{
 
 
 
-.menu-item:hover{
+/* .menu-item:hover{
     background-color: aqua;
-}
+} */
 
 .menu-item *{
     pointer-events: none;

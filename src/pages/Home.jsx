@@ -67,6 +67,8 @@ function Home() {
 
   const [isMenuHovered, setIsMenuHovered] = useState(false);
 
+  const [isEditLabelsSelected, setIsEditLabelsSelected] = useState(false);
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -92,7 +94,7 @@ function Home() {
   }
   return (
     <div>
-      <Outlet />
+      {/* <Outlet />  will correctly handle this later*/}
       <Navbar toggleMenu={toggleMenu} />
       <hr className="navbar-separation" />
 
@@ -100,8 +102,8 @@ function Home() {
 
         {
           isMenuOpen || isMenuHovered ?
-            <Menu isMenuHovered={isMenuHovered} setIsMenuHovered={setIsMenuHovered}/> :
-            <ClosedMenu setIsMenuHovered={setIsMenuHovered}/>
+            <Menu isMenuHovered={isMenuHovered} setIsMenuHovered={setIsMenuHovered} setIsEditLabelsSelected={setIsEditLabelsSelected}/> :
+            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isEditLabelsSelected={isEditLabelsSelected}/>
         }
 
 

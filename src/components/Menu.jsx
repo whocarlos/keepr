@@ -1,4 +1,4 @@
-import { Form, useNavigate, useSubmit } from "react-router-dom";
+import { Form, useLocation, useNavigate, useSubmit } from "react-router-dom";
 import { LightbulbIcon } from "./icons/LightbulbIcon";
 import { ReminderIcon } from "./icons/ReminderIcon";
 import { EditIcon } from "./icons/EditIcon";
@@ -6,9 +6,11 @@ import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
 import { useEffect, useRef } from "react";
 
-export function Menu({ isMenuHovered, setIsMenuHovered }) {
+export function Menu({ isMenuHovered, setIsMenuHovered, setIsEditLabelsSelected }) {
     let submmit = useSubmit();
     let navigate = useNavigate();
+    let location = useLocation();
+
     const menuRef = useRef(null);
 
     function handleMouseLeave() {
@@ -27,6 +29,26 @@ export function Menu({ isMenuHovered, setIsMenuHovered }) {
 
     }, [])
 
+    useEffect(() => {
+
+        const menuElem = document.querySelector('.menu');
+        let menuItems = menuElem.children[0].children[0].children;
+        menuItems = Array.from(menuItems);
+
+        let currLocation = location.pathname;
+
+        if (currLocation !== '/') {
+            currLocation = currLocation.substring(1);
+        }
+        menuItems.forEach((elem) => {
+            if (elem.getAttribute('data-route') === currLocation) {
+                elem.style.backgroundColor = 'red';
+            } else {
+                elem.style.backgroundColor = '#202124';
+            }
+        });
+    }, [location])
+
 
     function handleClick(e) {
         const targetElem = e.target;
@@ -35,18 +57,26 @@ export function Menu({ isMenuHovered, setIsMenuHovered }) {
         if (targetElem.tagName === 'DIV') {
             if (targetElem.classList.contains('menu-item')) {
 
+
                 const route = targetElem.getAttribute('data-route');
 
                 console.log(route);
 
 
-                if(route !== null){
-                    if(route === '/'){
+                if (route !== null) {
+                    if (route === '/') {
                         navigate('/')
-                    }else{
+                    } else {
                         navigate('/' + route)
                     }
                 }
+
+                if (targetElem.id === 'edit-labels') {
+                    setIsEditLabelsSelected(true);
+                    targetElem.style.backgroundColor = 'purple';
+                }
+
+
 
             }
         }
@@ -65,7 +95,7 @@ export function Menu({ isMenuHovered, setIsMenuHovered }) {
         <div className="menu" ref={menuRef} onClick={handleClick} >
             <Form >
                 <fieldset>
-                    <div className="menu-item" data-route='/'> 
+                    <div className="menu-item" data-route='/'>
                         <div className="menu-icon">
                             <LightbulbIcon />
                         </div>
@@ -85,8 +115,8 @@ export function Menu({ isMenuHovered, setIsMenuHovered }) {
 
                     {/* To-do: render all the labels and make them accesible as a menu item (each) */}
 
-{/* Edit labels doesn't need its own route, only the modal */}
-                    <div className="menu-item" >
+                    {/* Edit labels doesn't need its own route, only the modal */}
+                    <div className="menu-item" id="edit-labels">
                         <div className="menu-icon">
                             <EditIcon />
                         </div>
