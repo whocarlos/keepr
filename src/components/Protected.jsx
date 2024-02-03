@@ -9,4 +9,4 @@ export function Protected({children}){
         return <Navigate to='/login' />
     }
     return children
-}
+} 

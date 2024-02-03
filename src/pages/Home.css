@@ -97,7 +97,6 @@
 
 
 .main{
-    background-color: chocolate;    
     display: flex;
 }
 
@@ -280,9 +279,11 @@
     background-color: #202124 ;
 }
 
-fieldset{
-    border: 0;
+a.active > div{
+    background-color: peru;
 }
+
+
 
 .menu-item{
     height: 3rem;
@@ -297,14 +298,6 @@ fieldset{
     background-color: aqua;
 } */
 
-.menu-item *{
-    pointer-events: none;
-}
-
-.menu-item > input{
-    position: absolute;
-    opacity: 0;
-}
 
 .menu-item > label{
     padding-left: 1.5rem;
@@ -318,5 +311,10 @@ fieldset{
 .closed-menu{
     width: 7rem;
     color: white;
-    background-color: red ;
+    background-color: #202124 ;
+}
+
+.menu > a{
+    text-decoration: none;
+    color: white;
 }

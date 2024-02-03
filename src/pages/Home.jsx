@@ -1,9 +1,9 @@
 import { useAuth } from "../contexts/Auth";
 import { Navbar } from "../components/Navbar";
 import { NoteSettings } from "../components/NoteSettings";
-import { Form, useLoaderData, useSubmit, Outlet } from "react-router-dom";
+import { Form, useLoaderData, useSubmit, Outlet, useLocation, useNavigate } from "react-router-dom";
 import './Home.css'
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
 import { NoteContentInput } from "../components/NoteContentInput";
 
@@ -47,16 +47,17 @@ export async function homeLoader() {
 
   if (error) console.log(error);
 
- // console.log(data);
+  // console.log(data);
 
   return data
 }
 
 function Home() {
   const notes = useLoaderData();
- // console.log('notes', notes);
+  // console.log('notes', notes); 
   const session = useAuth();
   let submit = useSubmit();
+
 
   const formRef = useRef(null);
   const contentRef = useRef(null);
@@ -89,12 +90,13 @@ function Home() {
     setIsNoteFormOpen(true)
   }
 
-  function toggleMenu(){
+  function toggleMenu() {
     setIsMenuOpen(prev => !prev);
   }
+
   return (
     <div>
-      {/* <Outlet />  will correctly handle this later*/}
+      {/* <Outlet />   */}
       <Navbar toggleMenu={toggleMenu} />
       <hr className="navbar-separation" />
 
@@ -102,8 +104,11 @@ function Home() {
 
         {
           isMenuOpen || isMenuHovered ?
-            <Menu isMenuHovered={isMenuHovered} setIsMenuHovered={setIsMenuHovered} setIsEditLabelsSelected={setIsEditLabelsSelected}/> :
-            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isEditLabelsSelected={isEditLabelsSelected}/>
+            <Menu isMenuHovered={isMenuHovered} 
+            setIsMenuHovered={setIsMenuHovered} 
+            setIsEditLabelsSelected={setIsEditLabelsSelected} 
+            isEditLabelsSelected={isEditLabelsSelected} /> :
+            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isEditLabelsSelected={isEditLabelsSelected} />
         }
 
 

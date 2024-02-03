@@ -5,13 +5,13 @@ import './index.css'
 
 import {
   createBrowserRouter,
-  RouterProvider
+  RouterProvider,
 } from 'react-router-dom'
 
-import Home, {createNoteAction, homeLoader} from "./pages/Home.jsx"
-import Login, {loginAction} from './pages/Login.jsx'
-import Signup, {signUpAction} from './pages/Signup.jsx'
- 
+import Home, { createNoteAction, homeLoader } from "./pages/Home.jsx"
+import Login, { loginAction } from './pages/Login.jsx'
+import Signup, { signUpAction } from './pages/Signup.jsx'
+
 import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
@@ -19,7 +19,7 @@ import { CheckSession } from './components/CheckSession.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Protected> <Home /> </Protected>,
+    element: <Protected> <Home /> </Protected>,
     children: [
       {
         path: "trash",
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-     <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
 )
