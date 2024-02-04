@@ -298,6 +298,9 @@ a.active > div{
     background-color: aqua;
 } */
 
+.menu-item *{
+    pointer-events: none;
+}
 
 .menu-item > label{
     padding-left: 1.5rem;
@@ -308,13 +311,30 @@ a.active > div{
     height: 25px;
 }
 
-.closed-menu{
+.closed-menu > a{
     width: 7rem;
     color: white;
-    background-color: #202124 ;
+    text-decoration: none;
+    color: white;
 }
 
+.closed-menu{
+    background-color: #202124 ;
+
+}
 .menu > a{
     text-decoration: none;
     color: white;
+}
+
+#edit-labels-closed{
+    color: white;
+}
+
+#edit-labels.active{
+    background-color: palegreen;
+}
+
+#edit-labels-closed.active{
+    background-color: palegreen;
 }

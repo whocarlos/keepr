@@ -58,7 +58,6 @@ function Home() {
   const session = useAuth();
   let submit = useSubmit();
 
-
   const formRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -68,8 +67,9 @@ function Home() {
 
   const [isMenuHovered, setIsMenuHovered] = useState(false);
 
-  const [isEditLabelsSelected, setIsEditLabelsSelected] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
+ 
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -95,7 +95,7 @@ function Home() {
   }
 
   return (
-    <div>
+    <div >
       {/* <Outlet />   */}
       <Navbar toggleMenu={toggleMenu} />
       <hr className="navbar-separation" />
@@ -106,9 +106,10 @@ function Home() {
           isMenuOpen || isMenuHovered ?
             <Menu isMenuHovered={isMenuHovered} 
             setIsMenuHovered={setIsMenuHovered} 
-            setIsEditLabelsSelected={setIsEditLabelsSelected} 
-            isEditLabelsSelected={isEditLabelsSelected} /> :
-            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isEditLabelsSelected={isEditLabelsSelected} />
+            setIsActive={setIsActive}
+            isActive={isActive}
+            /> :
+            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
         }
 
 

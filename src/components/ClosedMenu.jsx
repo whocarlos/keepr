@@ -5,9 +5,15 @@ import { ArchiveIcon } from "./icons/ArchiveIcon"
 import { TrashIcon } from "./icons/TrashIcon"
 import { useLocation, NavLink } from "react-router-dom"
 import { useEffect, useRef } from "react"
-export function ClosedMenu({ setIsMenuHovered, isEditLabelsSelected }) {
+export function ClosedMenu({ setIsMenuHovered, isActive }) {
     let location = useLocation();
     let editLabelsRef = useRef(null);
+
+    useEffect(() => {
+        if(isActive === true){
+            editLabelsRef.current.classList.add('active');
+        }
+    }, []);
 
     return (
         <div className="closed-menu" onMouseOver={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)}>

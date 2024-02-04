@@ -6,7 +6,7 @@ import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
 import { useEffect, useRef } from "react";
 
-export function Menu({ isMenuHovered, setIsMenuHovered, setIsEditLabelsSelected, isEditLabelsSelected }) {
+export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) {
     let submmit = useSubmit();
     let navigate = useNavigate();
     let location = useLocation();
@@ -30,6 +30,21 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsEditLabelsSelected,
 
     }, [])
 
+    useEffect(() => {
+        if(isActive === true){
+            editLabelsRef.current.classList.add('active');
+        }
+    }, []);
+
+    function handleClick(e){
+        const elem = e.target;
+
+        console.log('u clicked it', elem);
+        setIsActive(true);
+        elem.classList.add('active');
+    }
+
+    
     return (
         <div className="menu" id="menu" ref={menuRef}  >
 
@@ -58,7 +73,7 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsEditLabelsSelected,
             {/* To-do: render all the labels and make them accesible as a menu item (each) */}
 
             {/* Edit labels doesn't need its own route, only the modal */}
-            <div className="menu-item" id="edit-labels" ref={editLabelsRef}>
+            <div className="menu-item" id="edit-labels" ref={editLabelsRef} onClick={handleClick}>
                 <div className="menu-icon">
                     <EditIcon />
                 </div>
