@@ -58,7 +58,6 @@ export function Navbar({toggleMenu}) {
                 </div>
             </div>
         </div>
-        <hr className="navbar-separation" />
         </>
     )
 }
