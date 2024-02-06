@@ -176,14 +176,7 @@
     overflow: hidden;
 }
 
-.note-content-input{
-    margin: 0.8em 0;
-    color: white;
-    text-align: left;
-    padding: 0.5rem;
-    white-space: pre-line;
-    outline: none;
-}
+
 
 .button-close{
     border: none;
@@ -216,12 +209,19 @@
     text-align: left;
     outline: none;
 }
-
+.note-content-input{
+    margin: 0.8em 0;
+    color: white;
+    text-align: left;
+    padding: 0.5rem;
+    white-space: pre-line;
+    outline: none;
+}
 #editor{
     color: white;
     text-align: left;
     padding: 0.5rem;
-    white-space: pre;
+    white-space: pre-line;
     outline: none;
 }
 
