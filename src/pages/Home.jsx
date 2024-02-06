@@ -133,7 +133,7 @@ function Home() {
           </div>
 
           <Masonry
-            breakpointCols={4}
+            breakpointCols={isMenuOpen ? 3 : 4}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {notes.map((note) => {
