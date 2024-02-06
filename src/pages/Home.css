@@ -287,6 +287,7 @@
 /* Masonry  */
 
 .my-masonry-grid {
+    
     display: -webkit-box; /* Not needed if autoprefixing */
     display: -ms-flexbox; /* Not needed if autoprefixing */
     display: flex;
@@ -319,6 +320,9 @@
     color: white;
     background-color: #202124 ;
 }
+body {
+    overflow-x: hidden;
+  }
 
 a.active > div{
     background-color: peru;
