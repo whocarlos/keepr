@@ -178,6 +178,11 @@
 
 .note-content-input{
     margin: 0.8em 0;
+    color: white;
+    text-align: left;
+    padding: 0.5rem;
+    white-space: pre-line;
+    outline: none;
 }
 
 .button-close{

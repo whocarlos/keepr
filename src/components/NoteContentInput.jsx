@@ -6,7 +6,7 @@ export function NoteContentInput({ forwardedRef, content }) {
 
   //console.log('the ref', forwardedRef.current);
   return (
-    <div className="note-content-input">
+    <div className="note-content-input"> 
       <NoteTextInput ref={noteRef} forwardedRef={forwardedRef} content={content} />
     </div> 
   )

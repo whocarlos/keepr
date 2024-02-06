@@ -136,9 +136,9 @@ function Home() {
             breakpointCols={4}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
-            {/* {notes.map((note) => {
-              return <Note title={note.title} key={note.id} content={note.content_html} />
-            })} */}
+            {notes.map((note) => {
+              return <Note title={note.title} key={note.id} content={note.content} />
+            })}
           </Masonry>
 
           {/* <div className="notes-container">
