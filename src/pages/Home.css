@@ -213,10 +213,17 @@
     margin: 0.8em 0;
     color: white;
     text-align: left;
-    padding: 0.5rem;
-    white-space: pre-line;
+    padding:0 0.5rem;
+    white-space: pre-wrap;
     outline: none;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 16;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 }
+
+
 #editor{
     color: white;
     text-align: left;
