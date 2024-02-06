@@ -13,6 +13,8 @@ import { CreateNote } from "../components/CreateNote";
 import { Menu } from "../components/Menu";
 import { ClosedMenu } from "../components/ClosedMenu";
 
+import Masonry from "react-masonry-css";
+
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
 
@@ -69,7 +71,7 @@ function Home() {
 
   const [isActive, setIsActive] = useState(false);
 
- 
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -104,16 +106,16 @@ function Home() {
 
         {
           isMenuOpen || isMenuHovered ?
-            <Menu isMenuHovered={isMenuHovered} 
-            setIsMenuHovered={setIsMenuHovered} 
-            setIsActive={setIsActive}
-            isActive={isActive}
+            <Menu isMenuHovered={isMenuHovered}
+              setIsMenuHovered={setIsMenuHovered}
+              setIsActive={setIsActive}
+              isActive={isActive}
             /> :
             <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
         }
 
 
-        <div>
+        <div id="content-container">
           <div className="create-container">
             {isNoteFormOpen
               ?
@@ -128,11 +130,18 @@ function Home() {
 
           </div>
 
-          <div className="notes-container">
+          <Masonry
+            breakpointCols={4}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column">
             {notes.map((note) => {
               return <Note title={note.title} key={note.id} content={note.content_html} />
             })}
-          </div>
+          </Masonry>
+
+          {/* <div className="notes-container">
+           
+          </div> */}
         </div>
 
 
