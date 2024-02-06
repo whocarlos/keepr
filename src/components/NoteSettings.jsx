@@ -31,7 +31,11 @@ export function NoteSettings() {
                         <div className="note-settings-icon" title="More"  >
 
                                 <MoreIcon />
-
+                                <div className="dropdown">
+                                        <div className="dropdown-content">
+                                                <p>Yoo</p>
+                                        </div>
+                                </div>
                         </div>
 
                         <div className="note-settings-icon" title="Backward">

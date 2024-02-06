@@ -396,3 +396,17 @@ a.active > div{
 #edit-labels-closed.active{
     background-color: palegreen;
 }
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+}
+
+.note-settings-icon:hover .dropdown-content{
+    display: block;
+}

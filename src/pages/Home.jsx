@@ -15,6 +15,7 @@ import { ClosedMenu } from "../components/ClosedMenu";
 
 import Masonry from "react-masonry-css";
 import { CreateNoteForm } from "../components/CreateNoteForm";
+import { DndContext } from "@dnd-kit/core";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -131,7 +132,6 @@ function Home() {
 
 
           </div>
-
           <Masonry
             breakpointCols={isMenuOpen ? 3 : 4}
             className="my-masonry-grid"
