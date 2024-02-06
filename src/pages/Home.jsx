@@ -101,7 +101,6 @@ function Home() {
     <div >
       {/* <Outlet />   */}
       <Navbar toggleMenu={toggleMenu} />
-      <hr className="navbar-separation" />
 
       <div className="main">
 
@@ -111,6 +110,7 @@ function Home() {
               setIsMenuHovered={setIsMenuHovered}
               setIsActive={setIsActive}
               isActive={isActive}
+              
             /> :
             <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
         }
@@ -135,7 +135,9 @@ function Home() {
           <Masonry
             breakpointCols={isMenuOpen ? 3 : 4}
             className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column">
+            columnClassName="my-masonry-grid_column"
+            style={isMenuOpen ? {paddingLeft: '13rem'} : null}>
+
             {notes.map((note) => {
               return <Note title={note.title} key={note.id} content={note.content} />
             })}

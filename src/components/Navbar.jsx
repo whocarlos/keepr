@@ -1,5 +1,6 @@
 export function Navbar({toggleMenu}) {
     return (
+        <>
         <div className="navbar">
 
             <div className="ham-logo" onClick={toggleMenu}>
@@ -57,5 +58,7 @@ export function Navbar({toggleMenu}) {
                 </div>
             </div>
         </div>
+        <hr className="navbar-separation" />
+        </>
     )
 }
