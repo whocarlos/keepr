@@ -4,9 +4,16 @@ import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 're
 export const NoteTextInput = forwardRef((props, ref) => {
     const contentEditableRef = useRef(null);
 
-    if (props.forwardedRef) {
+    // if (props.forwardedRef) {
+    //     console.log('heyyyyy', contentEditableRef.current);
+    
+    //     props.forwardedRef.current = contentEditableRef.current;
+    // }
+
+    useEffect(() => {
+        console.log(contentEditableRef.current, 'heeyyy', props);
         props.forwardedRef.current = contentEditableRef.current;
-    }
+    }, []);
 
     useEffect(() => {
         const observer = new MutationObserver(mutationHandler);

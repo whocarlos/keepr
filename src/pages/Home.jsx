@@ -14,6 +14,7 @@ import { Menu } from "../components/Menu";
 import { ClosedMenu } from "../components/ClosedMenu";
 
 import Masonry from "react-masonry-css";
+import { CreateNoteForm } from "../components/CreateNoteForm";
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -119,7 +120,8 @@ function Home() {
           <div className="create-container">
             {isNoteFormOpen
               ?
-              <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
+              // <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
+              <CreateNoteForm forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef}/>
               :
               <div className="empty-form-container" onClick={showNote}>
                 <CreateNote />
@@ -134,9 +136,9 @@ function Home() {
             breakpointCols={4}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
-            {notes.map((note) => {
+            {/* {notes.map((note) => {
               return <Note title={note.title} key={note.id} content={note.content_html} />
-            })}
+            })} */}
           </Masonry>
 
           {/* <div className="notes-container">
