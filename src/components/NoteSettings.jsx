@@ -16,7 +16,7 @@ import {
 import { MorePopover } from "./MorePopover"
 
 MorePopover
-export function NoteSettings() {
+export function NoteSettings({setIsListInput, isListInput}) {
 
         return (
                 <div className='note-settings-icons-container'>
@@ -56,7 +56,7 @@ export function NoteSettings() {
                                 <Popover>
                                         <PopoverTrigger><MoreIcon /></PopoverTrigger>
                                         <PopoverContent>
-                                                <MorePopover />
+                                                <MorePopover setIsListInput={setIsListInput} isListInput={isListInput}/>
                                         </PopoverContent>
                                 </Popover>
 
