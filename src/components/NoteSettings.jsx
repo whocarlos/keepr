@@ -8,6 +8,13 @@ import { BackgroundIcon } from "./icons/BackgroundIcon"
 import { InviteIcon } from "./icons/InviteIcon"
 import { ReminderIcon } from "./icons/ReminderIcon"
 
+import {
+        Popover,
+        PopoverContent,
+        PopoverTrigger,
+      } from "@/components/ui/popover"
+      
+
 export function NoteSettings() {
 
         return (
@@ -31,11 +38,11 @@ export function NoteSettings() {
                         <div className="note-settings-icon" title="More"  >
 
                                 <MoreIcon />
-                                <div className="dropdown">
-                                        <div className="dropdown-content">
-                                                <p>Yoo</p>
-                                        </div>
-                                </div>
+                                <Popover>
+                                        <PopoverTrigger>Open</PopoverTrigger>
+                                        <PopoverContent>Place content for the popover here.</PopoverContent>
+                                </Popover>
+
                         </div>
 
                         <div className="note-settings-icon" title="Backward">
