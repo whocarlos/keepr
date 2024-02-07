@@ -407,6 +407,26 @@ a.active > div{
     position: absolute;
 }
 
-.note-settings-icon:hover .dropdown-content{
-    display: block;
+.popover{
+    background-color: aquamarine;
+}
+
+/* .popover-item{
+    padding-left: 1rem ;
+} */
+
+div[data-radix-popper-content-wrapper]{
+    left: 30px !important;
+}
+
+.note-settings-icon > button{
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: #202124;
+    border: none;
+}
+
+.note-settings-icon > button:hover{
+    cursor: pointer;
 }

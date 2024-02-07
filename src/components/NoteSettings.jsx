@@ -13,20 +13,36 @@ import {
         PopoverContent,
         PopoverTrigger,
       } from "@/components/ui/popover"
-      
+import { MorePopover } from "./MorePopover"
 
+MorePopover
 export function NoteSettings() {
 
         return (
                 <div className='note-settings-icons-container'>
                         <div className="note-settings-icon" title="Add reminder">
-                                <ReminderIcon />
+
+                                <Popover>
+                                        <PopoverTrigger>
+                                                <ReminderIcon />
+                                        </PopoverTrigger>
+                                        <PopoverContent>
+                                                <MorePopover />
+                                        </PopoverContent>
+                                </Popover>
                         </div>
                         <div className="note-settings-icon" title="Collaborator">
                                 <InviteIcon />
                         </div>
                         <div className="note-settings-icon" title="Background options">
-                                <BackgroundIcon />
+                                <Popover>
+                                        <PopoverTrigger>
+                                                <BackgroundIcon />
+                                        </PopoverTrigger>
+                                        <PopoverContent>
+                                                <MorePopover />
+                                        </PopoverContent>
+                                </Popover>
                         </div>
                         <div className="note-settings-icon" title="Add image">
                                 <ImageIcon />
@@ -37,10 +53,11 @@ export function NoteSettings() {
                         </div>
                         <div className="note-settings-icon" title="More"  >
 
-                                <MoreIcon />
                                 <Popover>
-                                        <PopoverTrigger>Open</PopoverTrigger>
-                                        <PopoverContent>Place content for the popover here.</PopoverContent>
+                                        <PopoverTrigger><MoreIcon /></PopoverTrigger>
+                                        <PopoverContent>
+                                                <MorePopover />
+                                        </PopoverContent>
                                 </Popover>
 
                         </div>
@@ -57,3 +74,77 @@ export function NoteSettings() {
                 </div>
         )
 }
+
+// export function NoteSettings() {
+//         return (
+//                 <Menubar className='note-settings-icons-container'>
+//                         <div className="note-settings-icon">
+//                                 <MenubarMenu >
+//                                         <MenubarTrigger>
+//                                                 <ReminderIcon />
+//                                         </MenubarTrigger>
+//                                         <MenubarContent>
+//                                                 <MenubarItem>
+//                                                         one
+//                                                 </MenubarItem>
+//                                                 <MenubarItem>
+//                                                         two
+//                                                 </MenubarItem>
+//                                                 <MenubarItem>
+//                                                         tres
+//                                                 </MenubarItem>
+//                                         </MenubarContent>
+//                                 </MenubarMenu>
+//                         </div>
+//                         <div className="note-settings-icon">
+//                                 <InviteIcon />
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <MenubarMenu>
+//                                         <MenubarTrigger>
+//                                                 <BackgroundIcon />
+//                                         </MenubarTrigger>
+//                                 </MenubarMenu>
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <ImageIcon />
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <ArchiveIcon />
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <MenubarMenu>
+//                                         <MenubarTrigger>
+//                                                 <MoreIcon />
+//                                         </MenubarTrigger>
+//                                         <MenubarContent>
+//                                                 <MenubarItem>
+//                                                         one
+//                                                 </MenubarItem>
+//                                                 <MenubarItem>
+//                                                         two
+//                                                 </MenubarItem>
+//                                                 <MenubarItem>
+//                                                         tres
+//                                                 </MenubarItem>
+//                                         </MenubarContent>
+//                                 </MenubarMenu>
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <BackwardIcon />
+//                         </div>
+
+//                         <div className="note-settings-icon">
+//                                 <ForwardIcon />
+//                         </div>
+//                         <button className="button-close">Close</button>
+
+
+//                 </Menubar>
+//         )
+// }
