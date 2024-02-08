@@ -430,3 +430,9 @@ div[data-radix-popper-content-wrapper]{
 .note-settings-icon > button:hover{
     cursor: pointer;
 }
+
+
+.list-item{
+    background-color: aquamarine;
+    margin-bottom: 1rem;
+}
