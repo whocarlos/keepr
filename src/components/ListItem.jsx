@@ -4,7 +4,7 @@ import {CSS} from '@dnd-kit/utilities';
 
 export function ListItem(props) {
 
-    console.log('sup from list item', props.user);
+  //console.log('sup from list item', props.user);
   const {
     attributes,
     listeners,
