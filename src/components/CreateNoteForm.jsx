@@ -7,17 +7,20 @@ import { NoteListInput } from "./NoteListInput"
 
 export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
     const [isListInput, setIsListInput] = useState(false);
+    const [bg, setBg] = useState('#202124');
 
     //console.log(forwardedRef.current, 'hereeuu');
 
+    function handleChange(e){
+        //console.log(e.target.value, 'something changed?');
+        setBg(e.target.value)
+    }
     return (
-        <div className="form-container">
-            <Form method="post" action="/" ref={formRef} onSubmit={handleSubmit}>  
+        <div className="form-container" style={{background: bg}}>
+            <Form method="post" action="/" ref={formRef} onSubmit={handleSubmit} onChange={handleChange}>  
                 <NoteTitleInput /> 
                 <NoteContentInput forwardedRef={forwardedRef} />
-                <NoteSettings 
-                setIsListInput={setIsListInput} 
-                isListInput={isListInput}/>
+                <NoteSettings setBg={setBg}/>
             </Form> 
         </div>
     );
