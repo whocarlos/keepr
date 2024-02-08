@@ -14,6 +14,8 @@ import {
         PopoverTrigger,
       } from "@/components/ui/popover"
 import { MorePopover } from "./MorePopover"
+import { ReminderPopOver } from "./ReminderPopover"
+import { BackgroundPopover } from "./BackgroundPopover"
 
 MorePopover
 export function NoteSettings({setIsListInput, isListInput}) {
@@ -27,7 +29,7 @@ export function NoteSettings({setIsListInput, isListInput}) {
                                                 <ReminderIcon />
                                         </PopoverTrigger>
                                         <PopoverContent>
-                                                <MorePopover />
+                                                <ReminderPopOver />
                                         </PopoverContent>
                                 </Popover>
                         </div>
@@ -40,7 +42,7 @@ export function NoteSettings({setIsListInput, isListInput}) {
                                                 <BackgroundIcon />
                                         </PopoverTrigger>
                                         <PopoverContent>
-                                                <MorePopover />
+                                                <BackgroundPopover />
                                         </PopoverContent>
                                 </Popover>
                         </div>
