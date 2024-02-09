@@ -7,7 +7,7 @@ import { NoteListInput } from "./NoteListInput"
 
 export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
     const [isListInput, setIsListInput] = useState(false);
-    const [bgColor, setBgColor] = useState('#202124');
+    const [bgColor, setBgColor] = useState('#202124'); 
     const [bgImg, setBgImg] = useState(null);
 
     //console.log(forwardedRef.current, 'hereeuu');
