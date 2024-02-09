@@ -22,7 +22,7 @@ export function NoteTitleInput({title}) {
                 }
 
                 <input type="checkbox" name="bookmark" id="bookmark" onClick={testCheckbox} />
-
+ 
             </label>
         </div>
     )

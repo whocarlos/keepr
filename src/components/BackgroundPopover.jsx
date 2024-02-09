@@ -53,7 +53,7 @@ export function BackgroundPopover() {
                     <input type="radio" name="bg-color" id='#6c394f' value='#6c394f' className="bg-color-input"/>
                 </label>
 
-                <label for='#4b443a'>
+                <label htmlFor='#4b443a'>
                     <div className="color-container" style={{ backgroundColor: "#4b443a" }}></div>
                     <input type="radio" name="bg-color" id='#4b443a' value='#4b443a' className="bg-color-input"/>
                 </label>
@@ -64,9 +64,68 @@ export function BackgroundPopover() {
                 </label>
             </div>
 
-            <div>
-                <input type="radio" name="bg-img" value="#202124" />
-                <input type="radio" name="bg-img" value='https://www.gstatic.com/keep/backgrounds/grocery_dark_thumb_0615.svg' />
+            <div className="bg-container">
+                <label htmlFor="default-img">
+                    <div className="img-bg-container" style={{backgroundColor: "#202124"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="default-img" value="#202124" className="bg-img-input" />
+                </label>
+
+                <label htmlFor="grocery">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/grocery_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="grocery" value='https://www.gstatic.com/keep/backgrounds/grocery_dark_thumb_0615.svg' className="bg-img-input"/>
+                </label>
+
+                <label htmlFor="food">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/food_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="food" value='https://www.gstatic.com/keep/backgrounds/food_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="music">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/music_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="music" value='https://www.gstatic.com/keep/backgrounds/music_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="recipes">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/recipe_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="recipes" value='https://www.gstatic.com/keep/backgrounds/recipe_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="notes">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/notes_dark_thumb_0715.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="notes" value='https://www.gstatic.com/keep/backgrounds/notes_dark_thumb_0715.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="places">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/places_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="places" value='https://www.gstatic.com/keep/backgrounds/places_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="trips">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/travel_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="trips" value='https://www.gstatic.com/keep/backgrounds/travel_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="video">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/video_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="video" value='https://www.gstatic.com/keep/backgrounds/video_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+
+                <label htmlFor="celebration">
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0615.svg)"}}>
+                    </div>
+                    <input type="radio" name="bg-img" id="celebration" value='https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0615.svg' className="bg-img-input" />
+                </label>
+                
+
             </div>
         </div>
     )

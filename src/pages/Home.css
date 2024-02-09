@@ -443,10 +443,16 @@ div[data-radix-popper-content-wrapper]{
     border-radius: 50%;
 }
 
-.bg-color-input{
+.bg-color-input, .bg-img-input{
     display: none;
 }
 
 .bg-container{
     display: flex;
+}
+
+.img-bg-container{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
