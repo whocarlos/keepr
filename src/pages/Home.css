@@ -440,8 +440,8 @@ div[data-radix-popper-content-wrapper]{
 }
 
 .color-container{
-    width: 22px;
-    height: 22px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
 }
 
@@ -455,8 +455,8 @@ div[data-radix-popper-content-wrapper]{
 }
 
 .img-bg-container{
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -475,4 +475,65 @@ div[data-radix-popper-content-wrapper]{
 
 .bg-container:last-child{
     margin-right: 0;
+}
+
+#bg-color-default{
+    border: 2px solid #5f6368;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bg-color-default > svg{
+    width: 18px;
+    height: 18px;
+    color: white;
+}
+
+#bg-img-default{
+    border: 2px solid #5f6368;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#bg-img-default > svg{
+    width: 25px;
+    height: 25px;
+    color: white;
+}
+
+.color-container:hover{
+    border: 2px solid rgba(255,255,255,.87)!important;
+    cursor: pointer;
+}
+
+.img-bg-container:hover{
+    border: 2px solid rgba(255,255,255,.87)!important;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked ~ div{
+    border: 2px solid #a142f4 !important;
+}
+
+input[type="radio"]:checked ~ svg{
+    display: block;
+    position: absolute;
+}
+
+label > svg{
+    display: none;
+    background-color: #a142f4;
+    border-radius: 50%;
+    color: white;
+    height: 12px;
+    width: 12px;
+    right: 0;
+}
+
+.bg-container > label{
+    position: relative;
+    display: inline-block;
 }

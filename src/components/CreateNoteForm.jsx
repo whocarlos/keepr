@@ -24,14 +24,15 @@ export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
         }
     }
     return (
-        <div className="form-container" style={{backgroundColor: bgColor}}>
+        <div className="form-container" style={{backgroundColor: bgColor, border: bgColor !== '#202124' ? 'none': '1px solid white'}}>
             <Form method="post" action="/" 
             ref={formRef} 
             onSubmit={handleSubmit} 
             onChange={handleChange}
             style={{ backgroundImage: `url(${bgImg})`,
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover'}}>  
+                    backgroundSize: 'cover'}
+                    }>  
                 <NoteTitleInput /> 
                 <NoteContentInput forwardedRef={forwardedRef} />
                 <NoteSettings  bgColor={bgColor}/> 
