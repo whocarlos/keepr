@@ -29,7 +29,9 @@ export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
             ref={formRef} 
             onSubmit={handleSubmit} 
             onChange={handleChange}
-            style={{ backgroundImage: `url(${bgImg})`}}>  
+            style={{ backgroundImage: `url(${bgImg})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover'}}>  
                 <NoteTitleInput /> 
                 <NoteContentInput forwardedRef={forwardedRef} />
                 <NoteSettings  bgColor={bgColor}/> 

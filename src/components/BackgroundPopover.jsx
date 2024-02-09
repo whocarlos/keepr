@@ -1,6 +1,6 @@
 export function BackgroundPopover() {
     return (
-        <div className="popover">
+        <div className="popover " id="pop-over-bg">
             <div className="bg-container">
                 <label htmlFor="default" className="color-container" >
                     <div className="color-container" style={{ backgroundColor: "#202124" }}></div>
@@ -63,7 +63,7 @@ export function BackgroundPopover() {
                     <input type="radio" name="bg-color" id="#232427" value="#232427" className="bg-color-input"/>
                 </label>
             </div>
-
+            <hr id="bg-separator"/>
             <div className="bg-container">
                 <label htmlFor="default-img">
                     <div className="img-bg-container" style={{backgroundColor: "#202124"}}>
@@ -120,9 +120,9 @@ export function BackgroundPopover() {
                 </label>
 
                 <label htmlFor="celebration">
-                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0615.svg)"}}>
+                    <div className="img-bg-container" style={{background: "url(https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0715.svg)"}}>
                     </div>
-                    <input type="radio" name="bg-img" id="celebration" value='https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0615.svg' className="bg-img-input" />
+                    <input type="radio" name="bg-img" id="celebration" value='https://www.gstatic.com/keep/backgrounds/celebration_dark_thumb_0715.svg' className="bg-img-input" />
                 </label>
                 
 

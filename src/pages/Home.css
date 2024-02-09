@@ -170,6 +170,8 @@
     outline: none;
     border: none;
     color: white;
+
+    padding-left: 0.5rem;
 }
 
 #title-input::placeholder{
@@ -408,7 +410,7 @@ a.active > div{
 }
 
 .popover{
-    background-color: aquamarine;
+    background-color: #202124;
 }
 
 /* .popover-item{
@@ -449,10 +451,28 @@ div[data-radix-popper-content-wrapper]{
 
 .bg-container{
     display: flex;
+    justify-content: space-between;
 }
 
 .img-bg-container{
     width: 28px;
     height: 28px;
     border-radius: 50%;
+}
+
+#bg-separator{
+    margin: 0.3rem 0;
+}
+
+#pop-over-bg{
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+
+.bg-container > label{
+    margin-right: 0.3rem;
+}
+
+.bg-container:last-child{
+    margin-right: 0;
 }
