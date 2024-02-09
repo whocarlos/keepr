@@ -423,7 +423,7 @@ div[data-radix-popper-content-wrapper]{
     width: 20px;
     height: 20px;
     color: white;
-    background-color: #202124;
+    background-color: inherit;
     border: none;
 }
 
@@ -435,4 +435,18 @@ div[data-radix-popper-content-wrapper]{
 .list-item{
     background-color: aquamarine;
     margin: 1rem;
+}
+
+.color-container{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+}
+
+.bg-color-input{
+    display: none;
+}
+
+.bg-container{
+    display: flex;
 }

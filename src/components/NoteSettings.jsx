@@ -18,10 +18,10 @@ import { ReminderPopOver } from "./ReminderPopover"
 import { BackgroundPopover } from "./BackgroundPopover"
 
 MorePopover
-export function NoteSettings({setIsListInput, isListInput}) {
+export function NoteSettings({bgColor}) {
 
         return (
-                <div className='note-settings-icons-container'>
+                <div className='note-settings-icons-container' style={{backgroundColor: bgColor}}>
                         <div className="note-settings-icon" title="Add reminder">
 
                                 <Popover>
