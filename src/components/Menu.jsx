@@ -23,7 +23,7 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) 
             //console.log('yo---- ', menuRef.current);
 
             menuRef.current.addEventListener('mouseleave', handleMouseLeave);
-            menuRef.current.style.position = 'absolute';
+            menuRef.current.style.position = 'fixed';
             menuRef.current.style.width = '15rem'
         }
 
