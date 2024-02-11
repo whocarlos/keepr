@@ -15,7 +15,7 @@ import { ClosedMenu } from "../components/ClosedMenu";
 
 import Masonry from "react-masonry-css";
 import { CreateNoteForm } from "../components/CreateNoteForm";
-import { DndContext } from "@dnd-kit/core";
+
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -132,6 +132,7 @@ function Home() {
   }
 
   return (
+    <>
     <div >
       {/* <Outlet />   */}
       <Navbar toggleMenu={toggleMenu} />
@@ -165,7 +166,6 @@ function Home() {
 
 
           </div>
-          <Outlet />
           <Masonry
             breakpointCols={isMenuOpen ? 3 : 4}
             className="my-masonry-grid"
@@ -178,15 +178,16 @@ function Home() {
             })}
           </Masonry>
 
-          {/* <div className="notes-container">
-           
-          </div> */}
         </div>
 
 
 
       </div>
+
     </div>
+    <Outlet />
+
+    </>
   )
 }
 
@@ -200,11 +201,27 @@ export async function tempLoader({params}){
 }
 export function Temp(){
   let note = useLoaderData();
+  let navigate = useNavigate();
+
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    dialogRef.current.showModal();
+
+    dialogRef.current.addEventListener('click', (event) => {
+      if (event.target === dialogRef.current) {
+        dialogRef.current.close();
+        navigate('/');
+      }
+    });
+  }, []);
 
   return (
-    <div>
-      {JSON.stringify(note)}
-    </div>
+    <dialog ref={dialogRef}>
+      <div>
+        {JSON.stringify(note)}
+      </div>
+    </dialog>
   )
   
 }
