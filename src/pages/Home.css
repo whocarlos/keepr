@@ -537,3 +537,24 @@ label > svg{
     position: relative;
     display: inline-block;
 }
+
+/* Test */
+.overlay {
+    background-color: rgba(217, 76, 76, 0.5); 
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .modalContainer {
+    max-width: 600px;
+    width: 100%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: #c52222 ;
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 8px;
+  }

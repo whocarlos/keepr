@@ -33,9 +33,9 @@ export function NoteSettings({bgColor}) {
                                         </PopoverContent>
                                 </Popover>
                         </div>
-                        <div className="note-settings-icon" title="Collaborator">
+                        {/* <div className="note-settings-icon" title="Collaborator">
                                 <InviteIcon />
-                        </div>
+                        </div> */}
                         <div className="note-settings-icon" title="Background options">
                                 <Popover>
                                         <PopoverTrigger>
@@ -64,14 +64,14 @@ export function NoteSettings({bgColor}) {
 
                         </div>
 
-                        <div className="note-settings-icon" title="Backward">
+                        {/* <div className="note-settings-icon" title="Backward">
                                 <BackwardIcon />
 
                         </div>
                         <div className="note-settings-icon" title="Forward">
                                 <ForwardIcon />
 
-                        </div>
+                        </div> */}
                         <button className="button-close">Close</button>
                 </div>
         )

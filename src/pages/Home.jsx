@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/Auth";
 import { Navbar } from "../components/Navbar";
 import { NoteSettings } from "../components/NoteSettings";
-import { Form, useLoaderData, useSubmit, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Form, useLoaderData, useSubmit, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import './Home.css'
 import { useState, useRef, useEffect } from "react";
 import { NoteTitleInput } from "../components/NoteTitleInput";
@@ -143,10 +143,10 @@ function Home() {
             <Menu isMenuHovered={isMenuHovered}
               setIsMenuHovered={setIsMenuHovered}
               setIsActive={setIsActive}
-              isActive={isActive}
+              isActive={isActive} 
 
             /> :
-            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
+            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} /> 
         }
 
 
@@ -165,12 +165,14 @@ function Home() {
 
 
           </div>
+          <Outlet />
           <Masonry
             breakpointCols={isMenuOpen ? 3 : 4}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
             style={isMenuOpen ? { paddingLeft: '13rem' } : null}>
 
+           
             {notes.map((note) => {
               return <Note title={note.title} key={note.id} content={note.content} note={note} />
             })}
@@ -186,6 +188,25 @@ function Home() {
       </div>
     </div>
   )
+}
+
+
+export async function tempLoader({params}){
+  let {id} = params;
+  const { data, error } = await supabase.from('notes').select().eq('id', id);
+
+  return data
+
+}
+export function Temp(){
+  let note = useLoaderData();
+
+  return (
+    <div>
+      {JSON.stringify(note)}
+    </div>
+  )
+  
 }
 
 export default Home;
