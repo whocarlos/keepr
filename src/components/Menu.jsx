@@ -48,7 +48,7 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) 
     return (
         <div className="menu" id="menu" ref={menuRef}  >
 
-            <NavLink to='/'>
+            <NavLink to='/notes'>
                 <div className="menu-item" data-route='/'>
                     <div className="menu-icon">
                         <LightbulbIcon />

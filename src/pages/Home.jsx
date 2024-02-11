@@ -60,6 +60,8 @@ export async function homeLoader() {
 }
 
 function Home() {
+  let location = useLocation();
+  let navigate = useNavigate();
   const notes = useLoaderData();
   // console.log('notes', notes); 
   const session = useAuth();
@@ -67,6 +69,14 @@ function Home() {
 
   const formRef = useRef(null);
   const contentRef = useRef(null);
+
+  useEffect(() => {
+    //console.log(location);
+
+    if(location.pathname === '/'){
+      return navigate('/notes');
+    }
+  }, [location])
 
   const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 
@@ -151,7 +161,7 @@ function Home() {
         }
 
 
-        <div id="content-container">
+        {/* <div id="content-container">
           <div className="create-container">
             {isNoteFormOpen
               ?
@@ -178,14 +188,16 @@ function Home() {
             })}
           </Masonry>
 
-        </div>
+        </div> */}
 
+          <div id="content-container">
+            <Outlet context={isMenuOpen} />
+          </div>
 
 
       </div>
 
     </div>
-    <Outlet />
 
     </>
   )

@@ -8,13 +8,14 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import Home, { createNoteAction, homeLoader, tempLoader, Temp } from "./pages/Home.jsx"
+import Home, { createNoteAction,  tempLoader, Temp } from "./pages/Home.jsx"
 import Login, { loginAction } from './pages/Login.jsx'
 import Signup, { signUpAction } from './pages/Signup.jsx'
 
 import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
+import { Notes, notesLoader } from './components/Notes.jsx'
 
 
 
@@ -22,11 +23,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Protected> <Home /> </Protected>,
+    
     children: [
       {
-        path: 'notes/:id',
-        loader: tempLoader,
-        element: <Temp />
+        path: 'notes',
+        index: true,
+        loader: notesLoader,
+        element: <Notes />
 
       },
       {
@@ -43,7 +46,6 @@ const router = createBrowserRouter([
       }
     ],
     action: createNoteAction,
-    loader: homeLoader
   },
   {
     path: "/login",
