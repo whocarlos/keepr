@@ -19,7 +19,7 @@ export function NoteModal(){
       dialogRef.current.addEventListener('click', (event) => {
         if (event.target === dialogRef.current) {
           dialogRef.current.close();
-          navigate('/');
+          navigate('/notes');
         }
       });
     }, []);
