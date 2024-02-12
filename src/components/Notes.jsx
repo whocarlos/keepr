@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react"
-import { useLoaderData, useOutletContext, useSubmit } from "react-router-dom";
+import { Outlet, useLoaderData, useOutletContext, useSubmit } from "react-router-dom";
 import Masonry from "react-masonry-css";
 import { Note } from "./Note";
 import { CreateNote } from "./CreateNote";
@@ -132,6 +132,8 @@ export function Notes() {
                     return <Note title={note.title} key={note.id} content={note.content} note={note} />
                 })}
             </Masonry>
+
+            <Outlet />
         </>
     )
 }   

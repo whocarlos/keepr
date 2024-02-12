@@ -16,6 +16,7 @@ import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
 import { Notes, notesLoader } from './components/Notes.jsx'
+import { NoteModal, noteModalLoader } from './components/NoteModal.jsx'
 
 
 
@@ -27,9 +28,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'notes',
-        index: true,
         loader: notesLoader,
-        element: <Notes />
+        element: <Notes />,
+        children: [
+          {
+            path: ':id',
+            element: <NoteModal />,
+            loader: noteModalLoader
+          }
+        ]
 
       },
       {
