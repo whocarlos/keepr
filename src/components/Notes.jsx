@@ -107,6 +107,8 @@ export function Notes() {
 
     return (
         <>
+                    <Outlet />
+
             <div className="create-container">
                 {isNoteFormOpen
                     ?
@@ -133,7 +135,6 @@ export function Notes() {
                 })}
             </Masonry>
 
-            <Outlet />
         </>
     )
 }   

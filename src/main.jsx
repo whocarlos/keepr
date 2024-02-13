@@ -16,7 +16,7 @@ import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
 import { Notes, notesLoader } from './components/Notes.jsx'
-import { NoteModal, noteModalLoader } from './components/NoteModal.jsx'
+import { NoteModal, noteModalLoader, noteModalAction } from './components/NoteModal.jsx'
 
 
 
@@ -34,7 +34,8 @@ const router = createBrowserRouter([
           {
             path: ':id',
             element: <NoteModal />,
-            loader: noteModalLoader
+            loader: noteModalLoader,
+            action: noteModalAction
           }
         ]
 

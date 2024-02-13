@@ -18,7 +18,7 @@ import { ReminderPopOver } from "./ReminderPopover"
 import { BackgroundPopover } from "./BackgroundPopover"
 
 MorePopover
-export function NoteSettings({bgColor}) {
+export function NoteSettings({bgColor, isModal}) {
 
         return (
                 <div className='note-settings-icons-container' style={{backgroundColor: bgColor}}>

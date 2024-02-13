@@ -349,7 +349,7 @@ export const NoteTextInput = forwardRef((props, ref) => {
             contentEditable='true'
             onKeyUp={handleKeyUp}
             onKeyDown={handleKeyDown}
-            id='editor'
+            className='editor'
             ref={contentEditableRef}
             onPaste={handlePaste}
             data-placeholder="Add a note..."

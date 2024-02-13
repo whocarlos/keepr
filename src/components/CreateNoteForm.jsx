@@ -34,7 +34,7 @@ export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
                     backgroundSize: 'cover'}
                     }>  
                 <NoteTitleInput /> 
-                <NoteContentInput forwardedRef={forwardedRef} />
+                <NoteContentInput forwardedRef={forwardedRef} /> 
                 <NoteSettings  bgColor={bgColor}/> 
             </Form> 
         </div>

@@ -233,13 +233,15 @@
 }
 
 
-#editor{
+.editor{
     color: white;
     text-align: left;
     padding: 0.5rem;
     white-space: pre-line;
     outline: none;
 }
+
+
 
 [data-placeholder]:empty:before {
     content: attr(data-placeholder);
@@ -574,3 +576,6 @@ label > svg{
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+
+ 
