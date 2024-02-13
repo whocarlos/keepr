@@ -17,16 +17,6 @@ import Masonry from "react-masonry-css";
 import { CreateNoteForm } from "../components/CreateNoteForm";
 
 
-// Test
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();

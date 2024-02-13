@@ -53,7 +53,7 @@ export function NoteModal() {
     }
 
     return (
-        <dialog ref={dialogRef}>
+        <dialog ref={dialogRef} id="note-modal">
             <div style={{ backgroundColor: note.bg_color }}>
                 <Form method="post" action={`/notes/${note.id}`}
                     onSubmit={handleSubmit}>

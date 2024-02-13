@@ -577,5 +577,6 @@ label > svg{
     transform: translate(-50%, -50%);
   }
 
-
- 
+  #note-modal{
+    overflow: visible;
+  }
