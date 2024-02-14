@@ -72,7 +72,7 @@ export function NoteModal() {
         }else if(e.target.name === 'bg-img'){
             setBgImg(e.target.value);
             submit(
-                { 'bg-img': e.target.value },
+                { 'bg_img': e.target.value },
                 {
                     method: "post",
                     encType: "application/x-www-form-urlencoded",
