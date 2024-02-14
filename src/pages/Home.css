@@ -593,3 +593,15 @@ input[type="radio"]:checked ~ svg{
     overflow: visible;
     background: none;
   }
+
+  .note-title{
+    width: 90%;
+    max-width: 90%;
+    text-align: left;
+    color: white;
+    padding: 0 0.5rem;
+  }
+
+  a{
+    text-decoration: none;
+  }

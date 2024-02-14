@@ -7,7 +7,6 @@ import { createPortal } from "react-dom"
 import { useState } from "react"
 
 export function Note({ note }) {
-
     return (
 
         <>
@@ -22,8 +21,7 @@ export function Note({ note }) {
                             backgroundSize: 'cover'
                         }
                         } >
-
-                        {note.title.length > 0 && <NoteTitleInput title={note.title} bookmarked={note.bookmarked} isNoteDisplayed={true}/> }
+                        <p className="note-title">{note.title}</p>
                         <div className="note-content-input">
                             {note.content}
                         </div>

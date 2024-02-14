@@ -26,7 +26,7 @@ export async function createNoteAction({ request }) {
   let title = formData.get('title');
   let bgColor = formData.get('bg-color');
   let bgImg = formData.get('bg-img');
-  console.log(bgColor, bgImg, 'yooooo');
+  console.log(bgColor, bgImg, 'yooooo'); 
 
 
 
@@ -52,7 +52,7 @@ export async function createNoteAction({ request }) {
 
 export async function homeLoader() {
   const { data, error } = await supabase.from('notes').select();
-
+  console.log('home loader ran');
   if (error) console.log(error);
 
   // console.log(data);
