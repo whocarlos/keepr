@@ -17,9 +17,13 @@ import { MorePopover } from "./MorePopover"
 import { ReminderPopOver } from "./ReminderPopover"
 import { BackgroundPopover } from "./BackgroundPopover"
 
-MorePopover
-export function NoteSettings({bgColor, isModal}) {
-
+import { useNavigate } from "react-router-dom"
+export function NoteSettings({bgColor, isModal, dialogRef}) {
+        let navigate = useNavigate();
+        function closeDialog(){
+                dialogRef.current.close();
+                navigate('/notes');
+        }
         return (
                 <div className='note-settings-icons-container' style={{backgroundColor: bgColor}}>
                         <div className="note-settings-icon" title="Add reminder">
@@ -72,7 +76,8 @@ export function NoteSettings({bgColor, isModal}) {
                                 <ForwardIcon />
 
                         </div> */}
-                        <button className="button-close">Close</button>
+                        <button className="button-close"
+                        onClick={() => closeDialog()}>Close</button>
                 </div>
         )
 }

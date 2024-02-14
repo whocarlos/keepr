@@ -33,6 +33,7 @@ export function NoteModal() {
 
     const [bgColor, setBgColor] = useState(note.bg_color)
     const [bgImg, setBgImg] = useState(note.bg_img)
+
     const dialogRef = useRef(null);
 
     useEffect(() => {
@@ -49,6 +50,7 @@ export function NoteModal() {
     function handleSubmit(e) {
         e.preventDefault();
         const { target } = e;
+
 
         console.log(target.children[1].innerText);
         // const parent = target.parentNode;
@@ -74,7 +76,7 @@ export function NoteModal() {
                     onSubmit={handleSubmit}>
                     <NoteTitleInput title={note.title} />
                     <TextInput content={note.content} />
-                    <NoteSettings bgColor={bgColor} isModal={true} /> 
+                    <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} /> 
                 </Form>
             </div>
         </dialog>
