@@ -337,7 +337,6 @@ export function TextInput({content}){
         onKeyDown={handleKeyDown}
         ref={contentEditableRef}
         onPaste={handlePaste}
-        
         >
             {contentArr.map((line, index) => {
                 return <div className='editor-child' key={index}>{line}</div>

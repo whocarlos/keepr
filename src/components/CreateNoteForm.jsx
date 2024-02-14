@@ -17,7 +17,7 @@ export function CreateNoteForm({ forwardedRef, handleSubmit, formRef }) {
         //setBg(e.target.value)
         console.log(e.target.name);
 
-        if(e.target.name === 'bg-color'){
+        if(e.target.name === 'bg_color'){
             setBgColor(e.target.value);
         }else if(e.target.name === 'bg-img'){
             setBgImg(e.target.value);
