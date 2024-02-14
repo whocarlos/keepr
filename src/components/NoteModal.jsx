@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import supabase from "../supabase";
 import { NoteTitleInput } from "./NoteTitleInput";
 import { TextInput } from "./TextInput";
@@ -30,6 +30,8 @@ export function NoteModal() {
     let navigate = useNavigate();
     console.log(note.bg_color);
 
+    const [bgColor, setBgColor] = useState(note.bg_color)
+    const [bgImg, setBgImg] = useState(note.bg_img)
     const dialogRef = useRef(null);
 
     useEffect(() => {
@@ -52,14 +54,26 @@ export function NoteModal() {
         //const content = target
     }
 
+    function handleChange(e){
+        //console.log(e.target.value, 'something changed?');
+        //setBg(e.target.value)
+        console.log(e.target.name);
+
+        if(e.target.name === 'bg-color'){
+            setBgColor(e.target.value);
+        }else if(e.target.name === 'bg-img'){
+            setBgImg(e.target.value);
+        }
+    }
+
     return (
         <dialog ref={dialogRef} id="note-modal">
-            <div style={{ backgroundColor: note.bg_color }} className="note-in-modal">
-                <Form method="post" action={`/notes/${note.id}`}
+            <div style={{ backgroundColor: bgColor}} className="note-in-modal">
+                <Form method="post" action={`/notes/${note.id}`} onChange={handleChange} style={{ backgroundImage: `url(${bgImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
                     onSubmit={handleSubmit}>
                     <NoteTitleInput title={note.title} />
                     <TextInput content={note.content} />
-                    <NoteSettings bgColor={note.bg_color} isModal={true} />
+                    <NoteSettings bgColor={bgColor} isModal={true} /> 
                 </Form>
             </div>
         </dialog>
