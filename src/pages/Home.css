@@ -177,7 +177,6 @@
     border: none;
     color: white;
 
-    padding-left: 0.5rem;
 }
 
 #title-input::placeholder{
@@ -581,8 +580,16 @@ input[type="radio"]:checked ~ svg{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: none;
+  }
+
+  .note-in-modal{
+    width: 35rem;
+    padding: 1rem;
+    border-radius: 8px;
   }
 
   #note-modal{
     overflow: visible;
+    background: none;
   }

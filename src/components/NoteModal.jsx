@@ -54,7 +54,7 @@ export function NoteModal() {
 
     return (
         <dialog ref={dialogRef} id="note-modal">
-            <div style={{ backgroundColor: note.bg_color }}>
+            <div style={{ backgroundColor: note.bg_color }} className="note-in-modal">
                 <Form method="post" action={`/notes/${note.id}`}
                     onSubmit={handleSubmit}>
                     <NoteTitleInput title={note.title} />
