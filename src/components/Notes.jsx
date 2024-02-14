@@ -130,8 +130,8 @@ export function Notes() {
                 style={isMenuOpen ? { paddingLeft: '13rem' } : null}>
 
 
-                {notes.map((note) => {
-                    return <Note title={note.title} key={note.id} content={note.content} note={note} />
+                {notes.map((note) => { 
+                    return <Note note={note} key={note.id}/>
                 })}
             </Masonry>
 

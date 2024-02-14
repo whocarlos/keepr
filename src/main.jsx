@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import Home, { createNoteAction,  tempLoader, Temp } from "./pages/Home.jsx"
+import Home, { createNoteAction} from "./pages/Home.jsx"
 import Login, { loginAction } from './pages/Login.jsx'
 import Signup, { signUpAction } from './pages/Signup.jsx'
 

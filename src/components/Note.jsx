@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog"
 import { createPortal } from "react-dom"
 import { useState } from "react"
 
-export function Note({ title, content, note }) {
+export function Note({ note }) {
 
     return (
 
@@ -22,12 +22,11 @@ export function Note({ title, content, note }) {
                             backgroundSize: 'cover'
                         }
                         } >
-                        <NoteTitleInput title={note.title} />
-                        {/* <NoteContentInput forwardedRef={forwardedRef}  content={content}/> */}
+
+                        {note.title.length > 0 && <NoteTitleInput title={note.title} bookmarked={note.bookmarked} isNoteDisplayed={true}/> }
                         <div className="note-content-input">
                             {note.content}
                         </div>
-                        <NoteSettings />
                     </Form>
                 </div >
             </Link>

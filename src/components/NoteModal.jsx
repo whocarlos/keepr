@@ -35,6 +35,7 @@ export function NoteModal() {
     let navigate = useNavigate();
     let submit = useSubmit();
 
+
     const [bgColor, setBgColor] = useState(note.bg_color)
     const [bgImg, setBgImg] = useState(note.bg_img)
 
@@ -53,12 +54,30 @@ export function NoteModal() {
     }, []);
 
     function handleChange(e){
-        //console.log(e.target.value, 'something changed?');
-        //setBg(e.target.value)
-        console.log(e.currentTarget);
-        //const currFormData = new FormData(e.currentTarget);
-        //console.log(Object.keys(currFormData));
+        console.log(e.target);
 
+
+
+        if(e.target.name === 'title'){
+            submit(
+                { 'title': e.target.value },
+                {
+                    method: "post",
+                    encType: "application/x-www-form-urlencoded",
+                    action: `/notes/${note.id}`
+                }
+            )
+        }
+        if(e.target.name === 'bookmark'){
+            submit(
+                { 'bookmarked': e.target.checked },
+                {
+                    method: "post",
+                    encType: "application/x-www-form-urlencoded",
+                    action: `/notes/${note.id}`
+                }
+            )
+        }
         if(e.target.name === 'bg_color'){
             setBgColor(e.target.value);
             submit(
@@ -89,7 +108,7 @@ export function NoteModal() {
                 onChange={handleChange} 
                 style={{ backgroundImage: `url(${bgImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
                 ref={formRef}>
-                    <NoteTitleInput title={note.title} />
+                    <NoteTitleInput title={note.title} bookmarked={note.bookmarked} />
                     <TextInput content={note.content}   />
                     <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} /> 
                 </Form>

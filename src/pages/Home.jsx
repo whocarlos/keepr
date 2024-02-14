@@ -74,7 +74,7 @@ function Home() {
   useEffect(() => {
     //console.log(location);
 
-    if(location.pathname === '/'){
+    if (location.pathname === '/') {
       return navigate('/notes');
     }
   }, [location])
@@ -144,99 +144,36 @@ function Home() {
 
   return (
     <>
-    <div >
-      {/* <Outlet />   */}
-      <Navbar toggleMenu={toggleMenu} />
+      <div >
+        <Navbar toggleMenu={toggleMenu} />
 
-      <div className="main">
+        <div className="main">
 
-        {
-          isMenuOpen || isMenuHovered ?
-            <Menu isMenuHovered={isMenuHovered}
-              setIsMenuHovered={setIsMenuHovered}
-              setIsActive={setIsActive}
-              isActive={isActive} 
+          {
+            isMenuOpen || isMenuHovered ?
+              <Menu isMenuHovered={isMenuHovered}
+                setIsMenuHovered={setIsMenuHovered}
+                setIsActive={setIsActive}
+                isActive={isActive}
 
-            /> :
-            <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} /> 
-        }
+              /> :
+              <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
+          }
 
-
-        {/* <div id="content-container">
-          <div className="create-container">
-            {isNoteFormOpen
-              ?
-              // <Note forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
-              <CreateNoteForm forwardedRef={contentRef} handleSubmit={handleSubmit} formRef={formRef} />
-              :
-              <div className="empty-form-container" onClick={showNote}>
-                <CreateNote />
-              </div>
-            }
-
-
-
-          </div>
-          <Masonry
-            breakpointCols={isMenuOpen ? 3 : 4}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
-            style={isMenuOpen ? { paddingLeft: '13rem' } : null}>
-
-           
-            {notes.map((note) => {
-              return <Note title={note.title} key={note.id} content={note.content} note={note} />
-            })}
-          </Masonry>
-
-        </div> */}
 
           <div id="content-container">
             <Outlet context={isMenuOpen} />
           </div>
 
 
-      </div>
+        </div>
 
-    </div>
+      </div>
 
     </>
   )
 }
 
 
-export async function tempLoader({params}){
-  let {id} = params;
-  const { data, error } = await supabase.from('notes').select().eq('id', id);
-
-  return data
-
-}
-export function Temp(){
-  let note = useLoaderData();
-  let navigate = useNavigate();
-
-  const dialogRef = useRef(null);
-
-  useEffect(() => {
-    dialogRef.current.showModal();
-
-    dialogRef.current.addEventListener('click', (event) => {
-      if (event.target === dialogRef.current) {
-        dialogRef.current.close();
-        navigate('/');
-      }
-    });
-  }, []);
-
-  return (
-    <dialog ref={dialogRef}>
-      <div>
-        {JSON.stringify(note)}
-      </div>
-    </dialog>
-  )
-  
-}
 
 export default Home;
