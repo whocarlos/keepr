@@ -18,7 +18,7 @@ export function ClosedMenu({ setIsMenuHovered, isActive }) {
     return (
         <div className="closed-menu" onMouseOver={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)}>
 
-            <NavLink to='/'>
+            <NavLink to='/notes'>
                 <div className="menu-item" data-route='/'>
                     <div className="menu-icon">
                         <LightbulbIcon />

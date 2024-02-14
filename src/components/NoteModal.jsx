@@ -15,8 +15,9 @@ export async function noteModalAction({ request, params }) {
     const bgImg = formData.get('bg-img');
     const { data, error } = await supabase.from('notes').update({ title: title, content: content, content_html: contentHtml, bg_color: bgColor, bg_img: bgImg }).eq('id', id);
     if (error) console.log(error);
+    console.log('updated', data);
 
-    console.log(data);
+    //console.log(data);
 
     return null
 }
