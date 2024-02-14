@@ -17,6 +17,7 @@ import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
 import { Notes, notesLoader } from './components/Notes.jsx'
 import { NoteModal, noteModalLoader, noteModalAction } from './components/NoteModal.jsx'
+import ArchivedNotes, { archivedNotesLoader } from './components/ArchivedNotes.jsx'
 
 
 
@@ -50,7 +51,8 @@ const router = createBrowserRouter([
       },
       {
         path: "archive",
-        element: <p>archive</p>
+        element: <ArchivedNotes />,
+        loader: archivedNotesLoader
       }
     ],
     action: createNoteAction,

@@ -57,6 +57,16 @@ export function NoteModal() {
         console.log(e.target);
 
 
+        if(e.target.name ==='archived'){
+            submit(
+                { 'archived': e.target.checked },
+                {
+                    method: "post",
+                    encType: "application/x-www-form-urlencoded",
+                    action: `/notes/${note.id}`
+                }
+            )
+        }
 
         if(e.target.name === 'title'){
             submit(

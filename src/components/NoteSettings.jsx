@@ -54,8 +54,12 @@ export function NoteSettings({bgColor, isModal, dialogRef}) {
                                 <ImageIcon />
                         </div>
                         <div className="note-settings-icon" title="Archive">
+                                <label htmlFor="archived-input">
                                 <ArchiveIcon />
 
+                                <input type="checkbox" name="archived" id="archived-input" />
+
+                                </label>
                         </div>
                         <div className="note-settings-icon" title="More"  >
 
@@ -67,15 +71,6 @@ export function NoteSettings({bgColor, isModal, dialogRef}) {
                                 </Popover>
 
                         </div>
-
-                        {/* <div className="note-settings-icon" title="Backward">
-                                <BackwardIcon />
-
-                        </div>
-                        <div className="note-settings-icon" title="Forward">
-                                <ForwardIcon />
-
-                        </div> */}
                         <button className="button-close"
                         onClick={() => closeDialog()}>Close</button>
                 </div>
