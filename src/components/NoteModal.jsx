@@ -11,9 +11,23 @@ export async function noteModalAction({ request, params }) {
     const key = Array.from(formData.keys())[0];
 
     const value = formData.get(key);
-    console.log(
-        key, value
-    );
+ 
+    // console.log(
+    //     key, value, 'yooo'
+    // );
+
+
+        if(key === 'images'){
+        console.log(value);
+        //const {data, error } = await supabase.storage.from('images').upload(`${id}/${value.name}`, value);
+
+        // if(error){
+        //     console.log(error);
+        // }
+
+        // console.log(data);
+        return null
+    }
 
     const { data, error } = await supabase.from('notes').update({ [key]: value }).eq('id', id);
     
@@ -56,7 +70,31 @@ export function NoteModal() {
     function handleChange(e){
         console.log(e.target);
 
+        if(e.target.name === 'images'){
+            console.log('got them images?');
+            console.log(e.target.files);
 
+            let formData = new FormData();
+
+            for(let i = 0; i < e.target.files.length; i++){
+                formData.append('images[]', e.target.files[i]);
+            }
+
+        
+            //console.log(Array.from(formData.keys())[0]);
+            const images = formData.get('images[]');
+            console.log(images);
+
+            submit(
+                formData,
+                {
+                    method: "post",
+                    encType: "multipart/form-data",
+                    action: `/notes/${note.id}`
+                }
+            )
+            
+        }
         if(e.target.name ==='archived'){
             submit(
                 { 'archived': e.target.checked },
@@ -117,7 +155,8 @@ export function NoteModal() {
                 <Form method="post" action={`/notes/${note.id}`} 
                 onChange={handleChange} 
                 style={{ backgroundImage: `url(${bgImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
-                ref={formRef}>
+                ref={formRef}
+                encType="multipart/form-data" >
                     <NoteTitleInput title={note.title} bookmarked={note.bookmarked} />
                     <TextInput content={note.content}   />
                     <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} /> 

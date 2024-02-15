@@ -51,7 +51,10 @@ export function NoteSettings({bgColor, isModal, dialogRef}) {
                                 </Popover>
                         </div>
                         <div className="note-settings-icon" title="Add image">
+                                <label htmlFor="image-input">
                                 <ImageIcon />
+                                <input type="file" name="images" id="image-input" accept="image/*" multiple={true} />
+                                </label>
                         </div>
                         <div className="note-settings-icon" title="Archive">
                                 <label htmlFor="archived-input">
