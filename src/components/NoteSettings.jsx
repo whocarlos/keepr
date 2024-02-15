@@ -21,8 +21,12 @@ import { useNavigate } from "react-router-dom"
 export function NoteSettings({bgColor, isModal, dialogRef}) {
         let navigate = useNavigate();
         function closeDialog(){
-                dialogRef.current.close();
-                navigate('/notes');
+                if(isModal === true){
+                        console.log('raaaannn');
+                        dialogRef.current.close();
+                        navigate('/notes');
+                }
+                
         }
         return (
                 <div className='note-settings-icons-container' style={{backgroundColor: bgColor}}>

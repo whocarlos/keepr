@@ -89,7 +89,7 @@ export function Notes() {
         formData.append("bg-img", bgImgUrl);
 
 
-        submit(formData, { method: "post", action: '/' });
+        submit(formData, { method: "post", action: '/notes'  });
     }
 
     function rgbToHex(rgb) {

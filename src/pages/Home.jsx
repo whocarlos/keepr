@@ -72,7 +72,7 @@ function Home() {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    //console.log(location);
+    console.log(location, 'it changed');
 
     if (location.pathname === '/') {
       return navigate('/notes');

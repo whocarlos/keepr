@@ -8,14 +8,14 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import Home, { createNoteAction} from "./pages/Home.jsx"
+import Home from "./pages/Home.jsx"
 import Login, { loginAction } from './pages/Login.jsx'
 import Signup, { signUpAction } from './pages/Signup.jsx'
 
 import { AuthProvider } from './contexts/Auth.jsx'
 import { Protected } from './components/Protected.jsx'
 import { CheckSession } from './components/CheckSession.jsx'
-import { Notes, notesLoader } from './components/Notes.jsx'
+import { Notes, notesLoader, createNoteAction } from './components/Notes.jsx'
 import { NoteModal, noteModalLoader, noteModalAction } from './components/NoteModal.jsx'
 import ArchivedNotes, { archivedNotesLoader } from './components/ArchivedNotes.jsx'
 
@@ -25,13 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Protected> <Home /> </Protected>,
-    
+    // action: createNoteAction,
     children: [
       {
         path: 'notes',
         loader: notesLoader,
+        action: createNoteAction,
         element: <Notes />,
-        children: [
+        children: [ 
           {
             path: ':id',
             element: <NoteModal />,
@@ -55,7 +56,6 @@ const router = createBrowserRouter([
         loader: archivedNotesLoader
       }
     ],
-    action: createNoteAction,
   },
   {
     path: "/login",
