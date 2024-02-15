@@ -8,26 +8,26 @@ import { NoteSettings } from "./NoteSettings";
 export async function noteModalAction({ request, params }) {
     const { id } = params;
     const formData = await request.formData();
-    const key = Array.from(formData.keys())[0];
+    const keys = Array.from(formData.keys());
 
-    const value = formData.get(key);
- 
-    // console.log(
-    //     key, value, 'yooo'
-    // );
+    
+    if(keys.length > 1){
+        for(const key of keys){
+            const value = formData.get(key);
 
+            const {data, error} = await supabase.storage.from('images').upload(`/${value.name}`, value);
 
-        if(key === 'images'){
-        console.log(value);
-        //const {data, error } = await supabase.storage.from('images').upload(`${id}/${value.name}`, value);
+            if(error){
+                console.log(error);
+            }
+        }
 
-        // if(error){
-        //     console.log(error);
-        // }
-
-        // console.log(data);
         return null
     }
+
+    let key = keys[0];
+    let value = formData.get(key);
+     
 
     const { data, error } = await supabase.from('notes').update({ [key]: value }).eq('id', id);
     
@@ -77,13 +77,13 @@ export function NoteModal() {
             let formData = new FormData();
 
             for(let i = 0; i < e.target.files.length; i++){
-                formData.append('images[]', e.target.files[i]);
+                formData.append(`image-${i}`, e.target.files[i], e.target.files[i].name);
             }
 
         
             //console.log(Array.from(formData.keys())[0]);
-            const images = formData.get('images[]');
-            console.log(images);
+           // const images = formData.get('images[]');
+            //console.log(images);
 
             submit(
                 formData,
