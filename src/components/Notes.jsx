@@ -7,7 +7,10 @@ import { CreateNoteForm } from "./CreateNoteForm";
 import supabase from "../supabase";
 
 export async function notesLoader() {
-    const { data, error } = await supabase.from('notes').select();
+    // query supabase for the notes that are not archived
+
+const { data, error } = await supabase.from('notes').select().eq('archived', false);
+
 
     if (error) console.log(error);
 

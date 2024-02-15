@@ -1,3 +1,9 @@
+body{
+    background-color: #202124;
+    font-family:Arial, Helvetica, sans-serif
+
+}
+
 .navbar{
     background-color: #202124;
     display: flex;
@@ -611,4 +617,25 @@ input[type="radio"]:checked ~ svg{
 
   a{
     text-decoration: none;
+  }
+
+  #reminder-popover{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  #reminder-popover > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  #reminder-popover > button{
+    border: none;
+    background: none;
+    color: white;
+  }
+
+  #reminder-popover > button:hover{
+    cursor: pointer;
+    box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.1);
   }
