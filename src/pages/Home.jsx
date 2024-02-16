@@ -135,27 +135,18 @@ function Home() {
   }
 
   function toggleMenu() {
+    console.log('busted');
     setIsMenuOpen(prev => !prev);
   }
 
   return (
     <>
       <div >
-        <Navbar toggleMenu={toggleMenu} />
+        <Navbar toggleMenu={toggleMenu} /> 
 
         <div className="main">
 
-          {
-            isMenuOpen || isMenuHovered ?
-              <Menu isMenuHovered={isMenuHovered}
-                setIsMenuHovered={setIsMenuHovered}
-                setIsActive={setIsActive}
-                isActive={isActive}
-
-              /> :
-              <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
-          }
-
+          <Menu isMenuOpen={isMenuOpen} />
 
 
 

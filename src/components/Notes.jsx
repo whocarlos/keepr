@@ -9,7 +9,7 @@ import supabase from "../supabase";
 export async function notesLoader() {
     // query supabase for the notes that are not archived
 
-const { data, error } = await supabase.from('notes').select().eq('archived', false);
+    const { data, error } = await supabase.from('notes').select().eq('archived', false);
 
 
     if (error) console.log(error);
@@ -57,7 +57,8 @@ export function Notes() {
     let submit = useSubmit()
     const contentRef = useRef();
     const formRef = useRef();
-    const { isMenuOpen } = useOutletContext();
+    const  isMenuOpen  = useOutletContext();
+    console.log(isMenuOpen, 'is it?');
     const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 
     function handleSubmit(e) {
@@ -89,28 +90,28 @@ export function Notes() {
         formData.append("bg-img", bgImgUrl);
 
 
-        submit(formData, { method: "post", action: '/notes'  });
+        submit(formData, { method: "post", action: '/notes' });
     }
 
     function rgbToHex(rgb) {
         // Remove the "rgb(" and ")" parts from the string
         const rgbValues = rgb.slice(4, -1).split(",");
-    
+
         // Convert each RGB value to hex
         const hexValues = rgbValues.map(value => {
-          const hex = Number(value).toString(16);
-          return hex.length === 1 ? "0" + hex : hex;
+            const hex = Number(value).toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
         });
-    
+
         // Combine the hex values into a single string
         const hex = "#" + hexValues.join("");
-    
+
         return hex;
-      }
+    }
 
     return (
         <>
-                    <Outlet />
+            <Outlet />
 
             <div className="create-container">
                 {isNoteFormOpen
@@ -130,11 +131,11 @@ export function Notes() {
                 breakpointCols={isMenuOpen ? 3 : 4}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
-                style={isMenuOpen ? { paddingLeft: '13rem' } : null}>
+                style={isMenuOpen ? { paddingLeft: '10rem' } : null}>
 
 
-                {notes.map((note) => { 
-                    return <Note note={note} key={note.id}/>
+                {notes.map((note) => {
+                    return <Note note={note} key={note.id} />
                 })}
             </Masonry>
 
