@@ -61,9 +61,10 @@ export async function createNoteAction({ request }) {
 function Home() {
   let location = useLocation();
   let navigate = useNavigate();
-  const labels = useLoaderData();
-  console.log(labels);
-  // console.log('notes', notes); 
+  const labelsFromDb = useLoaderData();
+
+  const[labels, setLabels] = useState(labelsFromDb);
+
   const session = useAuth();
   let submit = useSubmit();
 
@@ -149,7 +150,7 @@ function Home() {
 
         <div className="main">
 
-          <Menu isMenuOpen={isMenuOpen} />
+          <Menu isMenuOpen={isMenuOpen} labels={labels} setLabels={setLabels} />
 
 
 

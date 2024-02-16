@@ -6,6 +6,7 @@ import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
 import { useEffect, useRef } from "react";
 import EditLabelsModal from "./EditLabelsModal";
+import { LabelIcon } from "./icons/LabelIcons";
 
 // export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive }) {
 //     let submmit = useSubmit();
@@ -123,7 +124,7 @@ import EditLabelsModal from "./EditLabelsModal";
 //     )
 // }
 
-export function Menu({isMenuOpen}) {
+export function Menu({ isMenuOpen, labels, setLabels }) {
     const editDialogRef = useRef(null);
     const navRef = useRef(null);
 
@@ -133,17 +134,17 @@ export function Menu({isMenuOpen}) {
 
     return (
         <>
-        <nav id="labels-modal" className={isMenuOpen ? 'active' : ''}  >
-            <NavLink to='/notes'>
-                <div className="menu-item">
-                    <div className="menu-icon">
-                        <LightbulbIcon />
-                    </div>
+            <nav id="labels-modal" className={isMenuOpen ? 'active' : ''}  >
+                <NavLink to='/notes'>
+                    <div className="menu-item">
+                        <div className="menu-icon">
+                            <LightbulbIcon />
+                        </div>
 
-                    <label htmlFor="notes-menu">Notes</label>
-                </div>
-            </NavLink>
-            <NavLink to="/reminders">
+                        <label htmlFor="notes-menu">Notes</label>
+                    </div>
+                </NavLink>
+                <NavLink to="/reminders">
                     <div className="menu-item">
                         <div className="menu-icon">
                             <ReminderIcon />
@@ -157,17 +158,31 @@ export function Menu({isMenuOpen}) {
                 {/* To-do: render all the labels and make them accesible as a menu item (each) */}
 
                 {/* Edit labels doesn't need its own route, only the modal */}
-            <a >
-                <div className="menu-item" id="edit-labels"  onClick={handleClick} >
-                    <div className="menu-icon">
-                        <EditIcon />
 
+                {labels.map((label) => {
+                    return (
+                        <NavLink to={`/labels/${label.id}`}>
+                            <div className="menu-item">
+                                <div className="menu-icon">
+                                    <LabelIcon />
+                                </div>
+                                <label>{label.label_name}</label>
+                            </div>
+                        </NavLink>
+                    );
+                })}
+
+                <a >
+                    <div className="menu-item" id="edit-labels" onClick={handleClick} >
+                        <div className="menu-icon">
+                            <EditIcon />
+
+                        </div>
+
+                        <label htmlFor="editLabels-menu">Edit labels</label>
                     </div>
+                </a>
 
-                    <label htmlFor="editLabels-menu">Edit labels</label>
-                </div>
-            </a>
-                
 
 
                 <NavLink to="/archive">
@@ -191,8 +206,8 @@ export function Menu({isMenuOpen}) {
                         <label htmlFor="trash-menu">Trash</label>
                     </div>
                 </NavLink>
-        </nav>
-        <EditLabelsModal editDialogRef={editDialogRef} />
+            </nav>
+            <EditLabelsModal editDialogRef={editDialogRef} labels={labels} setLabels={setLabels} />
         </>
     )
 }

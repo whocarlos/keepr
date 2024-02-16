@@ -3,7 +3,7 @@ import { Form } from "react-router-dom";
 
 
 
-export default function EditLabelsModal({ editDialogRef }) {
+export default function EditLabelsModal({ editDialogRef, labels, setLabels }) {
 
     async function createLabel(e) {
         e.preventDefault();
@@ -16,8 +16,15 @@ export default function EditLabelsModal({ editDialogRef }) {
 
         const { data: { user } } = await supabase.auth.getUser()
 
-        const { data, error } = await supabase.from('labels').insert({ label_name: newLabel, user_id: user.id });
+        const { data, error } = await supabase.from('labels').insert({ label_name: newLabel, user_id: user.id }).select();
 
+        if(error){
+            console.log(error);
+            return null;
+        }
+
+        console.log(data);
+        setLabels([...labels, data[0]]);
     }
     return (
         <dialog ref={editDialogRef} id="labels-dialog">
@@ -27,6 +34,13 @@ export default function EditLabelsModal({ editDialogRef }) {
                 <button >create</button>
             </form>
 
+            {labels.map((label) => {
+                return (
+                    <div key={label.id}>
+                        <p>{label.label_name}</p>
+                    </div>
+                )
+            })}
 
         </dialog>
     )
