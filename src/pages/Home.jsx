@@ -18,7 +18,10 @@ import { CreateNoteForm } from "../components/CreateNoteForm";
 
 
 export async function homeLoader(){
+  console.log('home loader, selecting labels');
   const {data, error} = await supabase.from('labels').select();
+
+  if(error) console.log(error);
   return data
 }
 

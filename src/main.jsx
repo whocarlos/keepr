@@ -20,7 +20,6 @@ import { NoteModal, noteModalLoader, noteModalAction } from './components/NoteMo
 import ArchivedNotes, { archivedNotesLoader } from './components/ArchivedNotes.jsx'
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
