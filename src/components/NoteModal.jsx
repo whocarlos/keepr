@@ -11,7 +11,7 @@ export async function noteModalAction({ request, params }) {
     const keys = Array.from(formData.keys());
 
     
-    if(keys.length > 1){
+    if(keys.length > 1 || keys[0] === 'image-0'){
         for(const key of keys){
             const value = formData.get(key);
 
@@ -20,6 +20,9 @@ export async function noteModalAction({ request, params }) {
             if(error){
                 console.log(error);
             }
+
+            
+            const result = await supabase.from('notes').update([{image_url}])
         }
 
         return null

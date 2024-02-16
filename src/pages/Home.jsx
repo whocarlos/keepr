@@ -17,6 +17,10 @@ import Masonry from "react-masonry-css";
 import { CreateNoteForm } from "../components/CreateNoteForm";
 
 
+export async function homeLoader(){
+  const {data, error} = await supabase.from('labels').select();
+  return data
+}
 
 export async function createNoteAction({ request }) {
   let formData = await request.formData();
@@ -50,20 +54,12 @@ export async function createNoteAction({ request }) {
   return null
 }
 
-export async function homeLoader() {
-  const { data, error } = await supabase.from('notes').select();
-  console.log('home loader ran');
-  if (error) console.log(error);
-
-  // console.log(data);
-
-  return data
-}
 
 function Home() {
   let location = useLocation();
   let navigate = useNavigate();
-  const notes = useLoaderData();
+  const labels = useLoaderData();
+  console.log(labels);
   // console.log('notes', notes); 
   const session = useAuth();
   let submit = useSubmit();
@@ -159,6 +155,8 @@ function Home() {
               /> :
               <ClosedMenu setIsMenuHovered={setIsMenuHovered} isActive={isActive} />
           }
+
+
 
 
           <div id="content-container">

@@ -22,7 +22,7 @@ export function NoteSettings({bgColor, isModal, dialogRef}) {
         let navigate = useNavigate();
         function closeDialog(){
                 if(isModal === true){
-                        console.log('raaaannn');
+                        //console.log('raaaannn');
                         dialogRef.current.close();
                         navigate('/notes');
                 }

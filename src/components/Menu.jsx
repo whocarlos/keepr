@@ -5,6 +5,7 @@ import { EditIcon } from "./icons/EditIcon";
 import { ArchiveIcon } from "./icons/ArchiveIcon";
 import { TrashIcon } from "./icons/TrashIcon";
 import { useEffect, useRef } from "react";
+import EditLabelsModal from "./EditLabelsModal";
 
 export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) {
     let submmit = useSubmit();
@@ -13,6 +14,8 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) 
 
     const menuRef = useRef(null);
     const editLabelsRef = useRef(null);
+
+    const editDilogRef = useRef(null);
 
     function handleMouseLeave() {
         setIsMenuHovered(false);
@@ -42,6 +45,8 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) 
         console.log('u clicked it', elem);
         setIsActive(true);
         elem.classList.add('active');
+
+        editDilogRef.current.showModal();
     }
 
     
@@ -76,6 +81,7 @@ export function Menu({ isMenuHovered, setIsMenuHovered, setIsActive, isActive}) 
             <div className="menu-item" id="edit-labels" ref={editLabelsRef} onClick={handleClick}>
                 <div className="menu-icon">
                     <EditIcon />
+                    <EditLabelsModal editDilogRef={editDilogRef} />
                 </div>
 
                 <label htmlFor="editLabels-menu">Edit labels</label>
