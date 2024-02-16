@@ -658,7 +658,17 @@ input[type="radio"]:checked ~ svg{
   #labels-modal{
     position: fixed;
     background-color: #202124;
+    padding-bottom: 7rem;
   }
+
+  #labels-modal:hover{
+    overflow-y: auto;
+  }
+
+  #labels-modal.active{
+    overflow-y: auto;
+  }
+  
 
   #labels-modal:hover > a >.menu-item > label{
     display: block !important;
@@ -666,6 +676,11 @@ input[type="radio"]:checked ~ svg{
 
   #labels-modal.active > a >.menu-item > label{
     display: block !important;
+  }
+
+  #labels-modal > a{
+    text-decoration: none;
+    color: white;
   }
 
   #labels-dialog{
