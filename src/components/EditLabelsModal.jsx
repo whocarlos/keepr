@@ -1,11 +1,11 @@
-export default function EditLabelsModal({editDilogRef}){
+export default function EditLabelsModal({editDialogRef}) {
 
     function createLabel(e){
         e.preventDefault();
         console.log('create label');
     }
     return(
-        <dialog ref={editDilogRef} id="labels-modal">
+        <dialog ref={editDialogRef} id="labels-modal">
                         <h1>Edit labels</h1>
                         <form onSubmit={e => console.log('rannnnnnning')}>
                             <input type="text" name="new-label" placeholder="Create label"  defaultValue='' />

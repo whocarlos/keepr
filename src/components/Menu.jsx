@@ -124,11 +124,18 @@ import EditLabelsModal from "./EditLabelsModal";
 // }
 
 export function Menu({isMenuOpen}) {
+    const editDialogRef = useRef(null);
+    const navRef = useRef(null);
+
+    function handleClick(e) {
+        editDialogRef.current.showModal();
+    }
 
     return (
-        <nav id="labels-modal" className={isMenuOpen ? 'active' : ''} >
+        <>
+        <nav id="labels-modal" className={isMenuOpen ? 'active' : ''}  >
             <NavLink to='/notes'>
-                <div className="menu-item" data-route='/'>
+                <div className="menu-item">
                     <div className="menu-icon">
                         <LightbulbIcon />
                     </div>
@@ -137,7 +144,7 @@ export function Menu({isMenuOpen}) {
                 </div>
             </NavLink>
             <NavLink to="/reminders">
-                    <div className="menu-item" data-route='reminders'>
+                    <div className="menu-item">
                         <div className="menu-icon">
                             <ReminderIcon />
                         </div>
@@ -151,10 +158,9 @@ export function Menu({isMenuOpen}) {
 
                 {/* Edit labels doesn't need its own route, only the modal */}
             <a >
-                <div className="menu-item" id="edit-labels"  >
+                <div className="menu-item" id="edit-labels"  onClick={handleClick} >
                     <div className="menu-icon">
                         <EditIcon />
-                        <EditLabelsModal />
 
                     </div>
 
@@ -165,7 +171,7 @@ export function Menu({isMenuOpen}) {
 
 
                 <NavLink to="/archive">
-                    <div className="menu-item" data-route='archive'>
+                    <div className="menu-item">
                         <div className="menu-icon">
                             <ArchiveIcon />
                         </div>
@@ -177,7 +183,7 @@ export function Menu({isMenuOpen}) {
 
 
                 <NavLink to="/trash" >
-                    <div className="menu-item" data-route='trash'>
+                    <div className="menu-item">
                         <div className="menu-icon">
                             <TrashIcon />
                         </div>
@@ -186,5 +192,7 @@ export function Menu({isMenuOpen}) {
                     </div>
                 </NavLink>
         </nav>
+        <EditLabelsModal editDialogRef={editDialogRef} />
+        </>
     )
 }
