@@ -4,6 +4,7 @@ import supabase from "../supabase";
 import { NoteTitleInput } from "./NoteTitleInput";
 import { TextInput } from "./TextInput";
 import { NoteSettings } from "./NoteSettings";
+import NoteLabels from "./NoteLabels";
 
 export async function noteModalAction({ request, params }) {
     const { id } = params;
@@ -215,7 +216,7 @@ export function NoteModal() {
                     <NoteTitleInput title={note.title} bookmarked={note.bookmarked} />
                     <TextInput content={note.content}   />
 
-                    {noteLabels.length > 0 && noteLabels.map(label => <p>{label.label_name}</p>)}
+                    {noteLabels && <NoteLabels labels={noteLabels} /> }
 
                     <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} labels={labels} /> 
                 </Form>
