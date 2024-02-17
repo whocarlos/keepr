@@ -692,20 +692,23 @@ input[type="radio"]:checked ~ svg{
     display: flex;
   }
 
-  .popover{
-    overflow-y: auto;
-    height: 10rem; 
-    /* UP temp heigth */
-  }
-
   .note-labels-container{
     display: flex;
     padding: 1rem 0.5rem;
   }
 
-
-
   .single-label{
     background-color: #a142f4;
     margin-right: 0.5rem;
+  }
+
+  .labels-popover{
+    height: 10rem !important;
+    overflow-y: scroll;
+  }
+
+  .labels-popover > .search-label-container{
+    background-color: #a142f4;
+    position: sticky;
+    top: 0;
   }
