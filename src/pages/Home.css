@@ -686,3 +686,14 @@ input[type="radio"]:checked ~ svg{
   #labels-dialog{
     background-color: aquamarine;
   }
+
+  .label-checkbox{
+    background-color: red;
+    display: flex;
+  }
+
+  .popover{
+    overflow-y: auto;
+    height: 10rem; 
+    /* UP temp heigth */
+  }

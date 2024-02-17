@@ -57,7 +57,7 @@ export function Notes() {
     let submit = useSubmit()
     const contentRef = useRef();
     const formRef = useRef();
-    const  isMenuOpen  = useOutletContext();
+    const  {isMenuOpen, labels}  = useOutletContext();
     console.log(isMenuOpen, 'is it?');
     const [isNoteFormOpen, setIsNoteFormOpen] = useState(true); //temp
 

@@ -11,6 +11,8 @@ export async function noteModalAction({ request, params }) {
     const keys = Array.from(formData.keys());
 
     
+
+    
     if(keys.length > 1 || keys[0] === 'image-0'){
         for(const key of keys){
             const value = formData.get(key);
@@ -30,6 +32,15 @@ export async function noteModalAction({ request, params }) {
 
     let key = keys[0];
     let value = formData.get(key);
+
+    if(key === 'label'){
+        console.log('label in action', value);
+        const {data,error} = await supabase.from('notes_labels').insert({note_id: id, label_id: value});
+        if (error) {
+            console.log(error);
+        }
+        return null
+    }
      
 
     const { data, error } = await supabase.from('notes').update({ [key]: value }).eq('id', id);
@@ -45,10 +56,40 @@ export async function noteModalAction({ request, params }) {
 export async function noteModalLoader({ params }) {
     const { id } = params;
     const { data, error } = await supabase.from('notes').select().eq('id', id);
-    return data;
+    
+    if(error) {
+        console.log(error);
+    }
+
+    const {data: labels, error: labelsError} = await supabase.from('labels').select();
+
+    if(labelsError) console.log(labelsError);
+
+
+    let { data: noteLabels, error: noteLabelsError } =  await supabase
+        .rpc('get_labels_for_note', {
+
+            'note_id_param': id
+        })
+
+        console.log('noteLabels', noteLabels);
+
+    if(noteLabelsError) console.log(noteLabelsError);
+   
+
+    const loaderData = {
+        note: data[0],
+        labels,
+        noteLabels
+    }
+    return loaderData;
 }
+
+
 export function NoteModal() {
-    let note = useLoaderData()[0];
+    let {note, labels, noteLabels} = useLoaderData();
+    console.log(noteLabels);
+    //console.log(note, labels);
     let navigate = useNavigate();
     let submit = useSubmit();
 
@@ -71,7 +112,18 @@ export function NoteModal() {
     }, []);
 
     function handleChange(e){
-        console.log(e.target);
+        console.log(e.target.id);
+
+    if(e.target.name === 'label'){
+        submit(
+            { 'label': e.target.id },
+            {
+                method: "post",
+                encType: "application/x-www-form-urlencoded",
+                action: `/notes/${note.id}`
+            }
+        )
+    }
 
         if(e.target.name === 'images'){
             console.log('got them images?');
@@ -162,7 +214,10 @@ export function NoteModal() {
                 encType="multipart/form-data" >
                     <NoteTitleInput title={note.title} bookmarked={note.bookmarked} />
                     <TextInput content={note.content}   />
-                    <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} /> 
+
+                    {noteLabels.length > 0 && noteLabels.map(label => <p>{label.label_name}</p>)}
+
+                    <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} labels={labels} /> 
                 </Form>
             </div>
         </dialog>

@@ -155,7 +155,7 @@ function Home() {
 
 
           <div id="content-container">
-            <Outlet context={isMenuOpen} />
+            <Outlet context={{isMenuOpen, labels}} />
           </div>
 
 

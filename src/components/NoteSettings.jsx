@@ -18,8 +18,11 @@ import { ReminderPopOver } from "./ReminderPopover"
 import { BackgroundPopover } from "./BackgroundPopover"
 
 import { useNavigate } from "react-router-dom"
-export function NoteSettings({bgColor, isModal, dialogRef}) {
+export function NoteSettings({bgColor, isModal, dialogRef, labels}) {
         let navigate = useNavigate();
+
+        const [openLabelInput, setOpenLabelInput] = useState(false);
+
         function closeDialog(){
                 if(isModal === true){
                         //console.log('raaaannn');
@@ -73,7 +76,7 @@ export function NoteSettings({bgColor, isModal, dialogRef}) {
                                 <Popover>
                                         <PopoverTrigger><MoreIcon /></PopoverTrigger>
                                         <PopoverContent>
-                                                <MorePopover/>
+                                                <MorePopover labels={labels}/>
                                         </PopoverContent>
                                 </Popover>
 
