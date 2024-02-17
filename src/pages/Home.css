@@ -712,3 +712,7 @@ input[type="radio"]:checked ~ svg{
     position: sticky;
     top: 0;
   }
+
+  #create-label-from-popover{
+    background-color: cadetblue;
+    }

@@ -1,13 +1,20 @@
 import { useState } from "react"
+import supabase from "../supabase";
+import { useAuth } from "@/contexts/Auth";
 
-export function LabelsPopover({labels, labelsPopoverRef}) {
+
+export function LabelsPopover({labels, labelsPopoverRef, setLabels}) {
+
+    const  session  = useAuth();
+    //console.log(session.user.id);
     
     const [innerLabels, setInnerLabels] = useState(labels);
     const [isExactMatch, setIsExactMatch] = useState(true);
+    const [search, setSearch] = useState('');
 
     function handleLabelSearch(e){
         const searchValue = e.target.value;
-
+        setSearch(searchValue);
         if(searchValue === ''){
             setInnerLabels(labels);
             setIsExactMatch(true);
@@ -36,6 +43,15 @@ export function LabelsPopover({labels, labelsPopoverRef}) {
 
     }
 
+    async function createLabel(){
+        const {data, error} = await supabase.from('labels').insert({label_name: search , user_id: session.user.id}).select();
+        console.log(data);
+
+        if(error) console.log(error);
+
+        setLabels([...labels, data[0]]);
+    }
+
     return (
         <>
         <div className="search-label-container">
@@ -53,7 +69,7 @@ export function LabelsPopover({labels, labelsPopoverRef}) {
         })}
 
         {
-            isExactMatch ? null : <p >No label found</p>
+            isExactMatch ? null : <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
         }
         </>
     )

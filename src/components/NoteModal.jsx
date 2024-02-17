@@ -1,4 +1,4 @@
-import { Form, useLoaderData, useNavigate, useSubmit } from "react-router-dom";
+import { Form, useLoaderData, useNavigate, useOutletContext, useSubmit } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import supabase from "../supabase";
 import { NoteTitleInput } from "./NoteTitleInput";
@@ -88,9 +88,10 @@ export async function noteModalLoader({ params }) {
 
 
 export function NoteModal() {
-    let {note, labels, noteLabels} = useLoaderData();
-    console.log(noteLabels);
-    //console.log(note, labels);
+    const {labels, setLabels} = useOutletContext();
+    console.log(labels);
+    let {note,  noteLabels} = useLoaderData();
+
     let navigate = useNavigate();
     let submit = useSubmit();
 
@@ -218,7 +219,11 @@ export function NoteModal() {
 
                     {noteLabels && <NoteLabels labels={noteLabels} /> }
 
-                    <NoteSettings bgColor={bgColor} isModal={true} dialogRef={dialogRef} labels={labels} /> 
+                    <NoteSettings bgColor={bgColor} 
+                    isModal={true} 
+                    dialogRef={dialogRef} 
+                    labels={labels}
+                    setLabels = {setLabels} /> 
                 </Form>
             </div>
         </dialog>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { LabelsPopover } from "./LabelsPopover";
 
-export function MorePopover({labels}) {
+export function MorePopover({labels, setLabels}) {
 
 
     const [openLabelInput, setOpenLabelInput] = useState(false);
@@ -9,7 +9,7 @@ export function MorePopover({labels}) {
 
     return (
         <>     {openLabelInput ?
-            <div className="labels-popover" ref={labelsPopoverRef}> <LabelsPopover labels={labels} labelsPopoverRef={labelsPopoverRef} /> </div>
+            <div className="labels-popover" ref={labelsPopoverRef}> <LabelsPopover labels={labels} setLabels={setLabels} labelsPopoverRef={labelsPopoverRef} /> </div>
             :
             <div className="popover">
                 <div className="popover-item" onClick={() => setOpenLabelInput(true)}>Add label</div>
