@@ -3,18 +3,29 @@ import { useState } from "react"
 export function LabelsPopover({labels, labelsPopoverRef}) {
     
     const [innerLabels, setInnerLabels] = useState(labels);
+    const [isExactMatch, setIsExactMatch] = useState(true);
 
     function handleLabelSearch(e){
         const searchValue = e.target.value;
 
         if(searchValue === ''){
             setInnerLabels(labels);
+            setIsExactMatch(true);
             labelsPopoverRef.current.style.height = '10rem !important';
             labelsPopoverRef.current.style.overflowY = 'scroll';
             return;
         }
+
         const filteredLabels = labels.filter((label) => {
             return label.label_name.toLowerCase().includes(searchValue.toLowerCase())
+        })
+
+        const exactMatch = labels.filter((label) => {
+            if(label.label_name.toLowerCase() === searchValue.toLowerCase()){
+                setIsExactMatch(true);
+            }else{
+                setIsExactMatch(false);
+            }
         })
 
        
@@ -22,6 +33,7 @@ export function LabelsPopover({labels, labelsPopoverRef}) {
         setInnerLabels(filteredLabels);
         labelsPopoverRef.current.style.height = 'auto !important';
         labelsPopoverRef.current.style.overflowY = 'hidden';
+
     }
 
     return (
@@ -39,6 +51,10 @@ export function LabelsPopover({labels, labelsPopoverRef}) {
                 </label>
             )
         })}
+
+        {
+            isExactMatch ? null : <p >No label found</p>
+        }
         </>
     )
 }
