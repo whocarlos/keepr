@@ -1,4 +1,4 @@
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, Link } from "react-router-dom";
 import supabase from "../supabase";
 
 export async function signUpAction({request}) {
@@ -31,6 +31,10 @@ function Signup(){
                 <button type="submit">signup</button>
             </Form>
         </div>
+
+
+        <div>Or login</div>
+        <Link to="/login">Login</Link>
         </>
     )
 }

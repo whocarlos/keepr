@@ -56,7 +56,6 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels})
         //console.log(data);
 
         if(error) console.log(error);
-        console.log(data);
         //setLabels(labels)
        setLabels([...labels, data[0]]);
        console.log(labels);
