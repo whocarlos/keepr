@@ -1,26 +1,32 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import supabase from "../supabase";
 import { useAuth } from "@/contexts/Auth";
 import { useParams, useSubmit } from "react-router-dom";
 
 
-export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels}) {
+export function LabelsPopover({ labels, labelsPopoverRef, setLabels, noteLabels }) {
     const { id } = useParams();
     const submit = useSubmit();
     //console.log(noteLabels);
-    const  session  = useAuth();
+    const session = useAuth();
     //console.log(session.user.id);
 
     const searchRef = useRef(null);
-    
+
+    useEffect(() => {
+        // This code runs after `labels` has been updated
+        console.log(labels);
+        // You can also perform other operations that depend on the updated value of `labels` here
+    }, [labels]);
+
     const [innerLabels, setInnerLabels] = useState(labels);
     const [isExactMatch, setIsExactMatch] = useState(true);
     const [search, setSearch] = useState('');
 
-    function handleLabelSearch(e){
+    function handleLabelSearch(e) {
         const searchValue = e.target.value;
         setSearch(searchValue);
-        if(searchValue === ''){
+        if (searchValue === '') {
             setInnerLabels(labels);
             setIsExactMatch(true);
             labelsPopoverRef.current.style.height = '10rem !important';
@@ -33,14 +39,14 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels})
         })
 
         const exactMatch = labels.filter((label) => {
-            if(label.label_name.toLowerCase() === searchValue.toLowerCase()){
+            if (label.label_name.toLowerCase() === searchValue.toLowerCase()) {
                 setIsExactMatch(true);
-            }else{
+            } else {
                 setIsExactMatch(false);
             }
         })
 
-       
+
 
         setInnerLabels(filteredLabels);
         labelsPopoverRef.current.style.height = 'auto !important';
@@ -48,17 +54,18 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels})
 
     }
 
-    async function createLabel(){
-        
+    async function createLabel() {
+
 
         // Create the label
-        const {data, error} = await supabase.from('labels').insert({label_name: search , user_id: session.user.id}).select();
+        const { data, error } = await supabase.from('labels').insert({ label_name: search, user_id: session.user.id }).select();
         //console.log(data);
 
-        if(error) console.log(error);
+        if (error) console.log(error);
         //setLabels(labels)
-       setLabels([...labels, data[0]]);
-       console.log(labels);
+        setLabels([...labels, data[0]]);
+       // setInnerLabels(labels)
+        console.log(labels);
 
         // Add the label to the note
 
@@ -81,29 +88,45 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels})
         //     labelsPopoverRef.current.style.height = '10rem !important';
         //     labelsPopoverRef.current.style.overflowY = 'scroll';
         //     searchRef.current.value = '';
-            
+
     }
 
     return (
         <>
-        <div className="search-label-container">
-        <p>Label note</p>
-        <input type="search" name="exact-label" id="" placeholder="Search label" onInput={handleLabelSearch} ref={searchRef}/>
-        </div>
-        
-        {innerLabels.map((label) => {
-            const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
-            return (
-                <label htmlFor="" className="label-checkbox" key={label.label_id}>
-                    <input type="checkbox" name="label" id={label.label_id}  defaultChecked={isChecked}/>
-                    <p>{label.label_name}</p>
-                </label>
-            )
-        })}
+            <div className="search-label-container">
+                <p>Label note</p>
+                <input type="search" name="exact-label" id="" placeholder="Search label" onInput={handleLabelSearch} ref={searchRef} />
+            </div>
 
+            {/* {innerLabels.map((label) => {
+                const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
+                return (
+                    <label htmlFor="" className="label-checkbox" key={label.label_id}>
+                        <input type="checkbox" name="label" id={label.label_id} defaultChecked={isChecked} />
+                        <p>{label.label_name}</p>
+                    </label>
+                )
+            })} */}
+
+            {labels.map((label) => {
+                const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
+                return (
+                    <label htmlFor="" className="label-checkbox" key={label.label_id}>
+                        <input type="checkbox" name="label" id={label.label_id} defaultChecked={isChecked} />
+                        <p>{label.label_name}</p>
+                    </label>
+                )
+            })}
+
+
+            {/* 
         {
             isExactMatch ? null : <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
-        }
+        } */}
+
+
+            <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
+
         </>
     )
 }
