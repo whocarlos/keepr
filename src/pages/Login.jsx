@@ -35,8 +35,7 @@ function Login(){
             </Form>
         </div>
 
-        <div>Or signup</div>
-        <Link to="/signup">Signup</Link>
+        <Link to="/signup">Signup for an account (no email verification)</Link>
         </>
     )
 }

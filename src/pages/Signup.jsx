@@ -33,8 +33,7 @@ function Signup(){
         </div>
 
 
-        <div>Or login</div>
-        <Link to="/login">Login</Link>
+        <Link to="/login">Login if you have an account</Link>
         </>
     )
 }
