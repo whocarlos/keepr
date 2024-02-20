@@ -3,7 +3,7 @@ export default function NoteLabels({labels}) {
         <div className="note-labels-container">
             {labels.map((label) => {
                 return (
-                    <label className="single-label">
+                    <label className="single-label" key={label.label_id}>
                         {label.label_name}
                         <input type="checkbox" name="label" id={label.label_id} />
                         

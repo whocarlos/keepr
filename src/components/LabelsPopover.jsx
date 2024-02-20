@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import supabase from "../supabase";
 import { useAuth } from "@/contexts/Auth";
 import { useParams, useSubmit } from "react-router-dom";
@@ -7,9 +7,11 @@ import { useParams, useSubmit } from "react-router-dom";
 export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels}) {
     const { id } = useParams();
     const submit = useSubmit();
-    console.log(noteLabels);
+    //console.log(noteLabels);
     const  session  = useAuth();
     //console.log(session.user.id);
+
+    const searchRef = useRef(null);
     
     const [innerLabels, setInnerLabels] = useState(labels);
     const [isExactMatch, setIsExactMatch] = useState(true);
@@ -51,31 +53,43 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels})
 
         // Create the label
         const {data, error} = await supabase.from('labels').insert({label_name: search , user_id: session.user.id}).select();
-        console.log(data);
+        //console.log(data);
 
         if(error) console.log(error);
-        setLabels([...labels, data[0]]);
+        console.log(data);
+        //setLabels(labels)
+       setLabels([...labels, data[0]]);
+       console.log(labels);
 
         // Add the label to the note
 
         //Here I use submit so that react router revalidates(?) the labels associated with this note
-        submit(
-            {
-                label: data[0].label_id
-            },
-            {
-                method: "post",
-                encType: "application/x-www-form-urlencoded",
-                action: `/notes/${id}`
-            }
-        )
+        // submit(
+        //     {
+        //         label: data[0].label_id
+        //     },
+        //     {
+        //         method: "post",
+        //         encType: "application/x-www-form-urlencoded",
+        //         action: `/notes/${id}`
+        //     }
+        // )
+
+        // console.log(labels, 'labels after the fact');
+
+        //     setInnerLabels(labels);
+        //     setIsExactMatch(true);
+        //     labelsPopoverRef.current.style.height = '10rem !important';
+        //     labelsPopoverRef.current.style.overflowY = 'scroll';
+        //     searchRef.current.value = '';
+            
     }
 
     return (
         <>
         <div className="search-label-container">
         <p>Label note</p>
-        <input type="search" name="exact-label" id="" placeholder="Search label" onInput={handleLabelSearch}/>
+        <input type="search" name="exact-label" id="" placeholder="Search label" onInput={handleLabelSearch} ref={searchRef}/>
         </div>
         
         {innerLabels.map((label) => {
