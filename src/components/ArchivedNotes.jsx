@@ -11,6 +11,7 @@ export async function archivedNotesLoader() {
 }
 
 export default function ArchivedNotes() {
+    //const location = useLocation(); 
     const archivedNotes = useLoaderData();
     console.log(archivedNotes);
     const { isMenuOpen } = useOutletContext();

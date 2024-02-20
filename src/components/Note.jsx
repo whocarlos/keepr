@@ -1,4 +1,4 @@
-import { Form, Link } from "react-router-dom"
+import { Form, Link, useLocation } from "react-router-dom"
 import { NoteTitleInput } from "./NoteTitleInput"
 import { NoteContentInput } from "./NoteContentInput"
 import { NoteSettings } from "./NoteSettings"
@@ -7,10 +7,11 @@ import { createPortal } from "react-dom"
 import { useState } from "react"
 
 export function Note({ note }) {
+    const location = useLocation();
     return (
 
         <>
-            <Link key={note.id} to={`/notes/${note.id}`}>
+            <Link key={note.id} to={`/notes/${note.id}`} state={{ backgroundLocation: location.state }}>
                 <div className="form-container"
                     style={{ backgroundColor: note.bg_color, border: note.bg_color !== '#202124' ? 'none' : '1px solid white' }}
                 >

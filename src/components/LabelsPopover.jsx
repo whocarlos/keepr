@@ -1,10 +1,13 @@
 import { useState } from "react"
 import supabase from "../supabase";
 import { useAuth } from "@/contexts/Auth";
+import { useParams, useSubmit } from "react-router-dom";
 
 
-export function LabelsPopover({labels, labelsPopoverRef, setLabels}) {
-
+export function LabelsPopover({labels, labelsPopoverRef, setLabels, noteLabels}) {
+    const { id } = useParams();
+    const submit = useSubmit();
+    console.log(noteLabels);
     const  session  = useAuth();
     //console.log(session.user.id);
     
@@ -44,12 +47,28 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels}) {
     }
 
     async function createLabel(){
+        
+
+        // Create the label
         const {data, error} = await supabase.from('labels').insert({label_name: search , user_id: session.user.id}).select();
         console.log(data);
 
         if(error) console.log(error);
-
         setLabels([...labels, data[0]]);
+
+        // Add the label to the note
+
+        //Here I use submit so that react router revalidates(?) the labels associated with this note
+        submit(
+            {
+                label: data[0].label_id
+            },
+            {
+                method: "post",
+                encType: "application/x-www-form-urlencoded",
+                action: `/notes/${id}`
+            }
+        )
     }
 
     return (
@@ -60,9 +79,10 @@ export function LabelsPopover({labels, labelsPopoverRef, setLabels}) {
         </div>
         
         {innerLabels.map((label) => {
+            const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
             return (
                 <label htmlFor="" className="label-checkbox" key={label.label_id}>
-                    <input type="checkbox" name="label" id={label.label_id} />
+                    <input type="checkbox" name="label" id={label.label_id}  defaultChecked={isChecked}/>
                     <p>{label.label_name}</p>
                 </label>
             )

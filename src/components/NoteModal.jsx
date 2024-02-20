@@ -42,7 +42,7 @@ export async function noteModalAction({ request, params }) {
         }
         return null
     }
-     
+            
 
     const { data, error } = await supabase.from('notes').update({ [key]: value }).eq('id', id);
     
@@ -62,11 +62,6 @@ export async function noteModalLoader({ params }) {
         console.log(error);
     }
 
-    const {data: labels, error: labelsError} = await supabase.from('labels').select();
-
-    if(labelsError) console.log(labelsError);
-
-
     let { data: noteLabels, error: noteLabelsError } =  await supabase
         .rpc('get_labels_for_note', {
 
@@ -80,7 +75,6 @@ export async function noteModalLoader({ params }) {
 
     const loaderData = {
         note: data[0],
-        labels,
         noteLabels
     }
     return loaderData;
@@ -223,7 +217,8 @@ export function NoteModal() {
                     isModal={true} 
                     dialogRef={dialogRef} 
                     labels={labels}
-                    setLabels = {setLabels} /> 
+                    setLabels = {setLabels}
+                    noteLabels={noteLabels} /> 
                 </Form>
             </div>
         </dialog>
