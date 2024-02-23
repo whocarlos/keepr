@@ -12,12 +12,7 @@ export function LabelsPopover({ labels, labelsPopoverRef, setLabels, noteLabels 
     //console.log(session.user.id);
 
     const searchRef = useRef(null);
-
-    useEffect(() => {
-        // This code runs after `labels` has been updated
-        console.log(labels);
-        // You can also perform other operations that depend on the updated value of `labels` here
-    }, [labels]);
+    const labelsContainerRef = useRef(null);
 
     const [innerLabels, setInnerLabels] = useState(labels);
     const [isExactMatch, setIsExactMatch] = useState(true);
@@ -64,32 +59,38 @@ export function LabelsPopover({ labels, labelsPopoverRef, setLabels, noteLabels 
         if (error) console.log(error);
         //setLabels(labels)
         setLabels([...labels, data[0]]);
-       // setInnerLabels(labels)
+        // setInnerLabels(labels)
         console.log(labels);
 
         // Add the label to the note
 
         //Here I use submit so that react router revalidates(?) the labels associated with this note
-        // submit(
-        //     {
-        //         label: data[0].label_id
-        //     },
-        //     {
-        //         method: "post",
-        //         encType: "application/x-www-form-urlencoded",
-        //         action: `/notes/${id}`
-        //     }
-        // )
+        submit(
+            {
+                label: data[0].label_id
+            },
+            {
+                method: "post",
+                encType: "application/x-www-form-urlencoded",
+                action: `/notes/${id}`
+            }
+        )
 
         // console.log(labels, 'labels after the fact');
 
         //     setInnerLabels(labels);
-        //     setIsExactMatch(true);
-        //     labelsPopoverRef.current.style.height = '10rem !important';
-        //     labelsPopoverRef.current.style.overflowY = 'scroll';
-        //     searchRef.current.value = '';
+        setIsExactMatch(true);
+        labelsPopoverRef.current.style.height = '10rem !important';
+        labelsPopoverRef.current.style.overflowY = 'scroll';
+        searchRef.current.value = '';
 
     }
+
+    useEffect(() => {
+        if(labels.lenght >= 5){
+            labelsPopoverRef.current.style.overflowY = 'scroll';
+        }
+    }, [labels])
 
     return (
         <>
@@ -108,25 +109,21 @@ export function LabelsPopover({ labels, labelsPopoverRef, setLabels, noteLabels 
                 )
             })} */}
 
-            {labels.map((label) => {
-                const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
-                return (
-                    <label htmlFor="" className="label-checkbox" key={label.label_id}>
-                        <input type="checkbox" name="label" id={label.label_id} defaultChecked={isChecked} />
-                        <p>{label.label_name}</p>
-                    </label>
-                )
-            })}
+            <div className="labels-container-popover" ref={labelsContainerRef}>
+                {labels.map((label) => {
+                    const isChecked = noteLabels.some(noteLabel => noteLabel.label_id === label.label_id);
+                    return (
+                        <label htmlFor="" className="label-checkbox" key={label.label_id}>
+                            <input type="checkbox" name="label" id={label.label_id} defaultChecked={isChecked} />
+                            <p>{label.label_name}</p>
+                        </label>
+                    )
+                })}
+            </div>
 
-
-            {/* 
-        {
-            isExactMatch ? null : <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
-        } */}
-
-
-            <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
-
+            {
+                isExactMatch ? null : <div id="create-label-from-popover" onClick={createLabel}>Create label "{search}" </div>
+            }
         </>
     )
 }

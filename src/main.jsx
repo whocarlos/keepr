@@ -19,6 +19,10 @@ import { Notes, notesLoader, createNoteAction } from './components/Notes.jsx'
 import { NoteModal, noteModalLoader, noteModalAction } from './components/NoteModal.jsx'
 import ArchivedNotes, { archivedNotesLoader } from './components/ArchivedNotes.jsx'
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -32,15 +36,14 @@ const router = createBrowserRouter([
         loader: notesLoader,
         action: createNoteAction,
         element: <Notes />,
-        children: [ 
-          {
-            path: ':id',
-            element: <NoteModal />,
-            loader: noteModalLoader,
-            action: noteModalAction
-          }
-        ]
-
+        // children: [ 
+        //   {
+        //     path: ':id',
+        //     element: <NoteModal />,
+        //     loader: noteModalLoader,
+        //     action: noteModalAction
+        //   }
+        // ]
       },
       {
         path: "trash",
@@ -70,8 +73,10 @@ const router = createBrowserRouter([
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

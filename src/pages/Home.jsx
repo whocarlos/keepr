@@ -17,6 +17,9 @@ import Masonry from "react-masonry-css";
 import { CreateNoteForm } from "../components/CreateNoteForm";
 
 
+import { useQuery } from "react-query";
+
+
 export async function homeLoader(){
   console.log('home loader, selecting labels');
   const {data, error} = await supabase.from('labels').select( '*' );
@@ -64,6 +67,22 @@ function Home() {
   const labelsFromDb = useLoaderData();
 
   const[labels, setLabels] = useState(labelsFromDb);
+
+  const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
+  const [noteId, setNoteId] = useState(null);
+
+  useEffect(() => {
+    console.log(location, 'it changed thissss');
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('noteId');
+    if (id) {
+      setIsNoteModalOpen(true);
+      setNoteId(id);
+    } else {
+      setIsNoteModalOpen(false);
+    }
+  }, [location]);
+
 
   const session = useAuth();
   let submit = useSubmit();
@@ -163,10 +182,55 @@ function Home() {
 
       </div>
 
+{ isNoteModalOpen && <TempModal id={noteId} /> }
+
     </>
   )
 }
 
+const getSingleNote = async (id) => {  
+  const { data, error } = await supabase.from('notes').select('*').eq('id', id).single();
 
+  if(error) console.log(error);
+
+  return data
+}
+
+
+function TempModal({ id }) {
+  // Assume id can be null/undefined and only fetch when id is available
+  const dialogRef = useRef(null);
+
+  const { data: note, error, isLoading } = useQuery(
+    ['notes', id], 
+    () => getSingleNote(id),
+    { 
+      enabled: !!id, // Only run the query if id is truthy
+      onSuccess: () => {
+        if(dialogRef.current) {
+          dialogRef.current.showModal();
+        }else{
+          console.log('dialogRef.current is null');
+        }
+      }
+    }
+    
+    
+  );
+
+
+ 
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error occurred: {error.message}</div>;
+  if (!note) return <div>Note not found</div>;
+
+  return (
+    <dialog ref={dialogRef}>
+      <h1>{note.title}</h1>
+      <p>{note.content}</p>
+    </dialog>
+  );
+}
 
 export default Home;

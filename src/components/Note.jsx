@@ -11,7 +11,7 @@ export function Note({ note }) {
     return (
 
         <>
-            <Link key={note.id} to={`/notes/${note.id}`} state={{ backgroundLocation: location.state }}>
+            <Link key={note.id} to={`${location.pathname}?noteId=${note.id}`}>
                 <div className="form-container"
                     style={{ backgroundColor: note.bg_color, border: note.bg_color !== '#202124' ? 'none' : '1px solid white' }}
                 >

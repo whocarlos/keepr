@@ -702,10 +702,12 @@ input[type="radio"]:checked ~ svg{
     margin-right: 0.5rem;
   }
 
-  .labels-popover{
+  /* .labels-popover{
     height: 10rem !important;
     overflow-y: scroll;
-  }
+  } */
+
+  
 
   .labels-popover > .search-label-container{
     background-color: #a142f4;

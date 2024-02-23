@@ -7,6 +7,8 @@ export function MorePopover({labels, setLabels, noteLabels}) {
     const [openLabelInput, setOpenLabelInput] = useState(false);
     const labelsPopoverRef = useRef(null);
 
+  
+
     return (
         <>     {openLabelInput ?
             <div className="labels-popover" ref={labelsPopoverRef}> <LabelsPopover labels={labels} setLabels={setLabels} labelsPopoverRef={labelsPopoverRef} noteLabels={noteLabels} /> </div>
